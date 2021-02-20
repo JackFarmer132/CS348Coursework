@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  background: #f4f0f7;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+header {
+  background: #521d80;
+}

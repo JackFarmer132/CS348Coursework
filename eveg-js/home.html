@@ -4,11 +4,163 @@
 <head>
 <meta charset="utf-8">
 <title>Home</title>
-<link rel="stylesheet" href="/css/styles.css">
+<script type="text/javascript" src="model.js"></script>
+<style>
+
+  * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+  }
+
+  body{
+    background-color:#e3e3e3;
+    color:#555555;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:12px;
+    margin:0;
+  }
+
+  .container{
+    width:100%;
+    margin:auto;
+  }
+
+  .title-box{
+    background-color: #4f1778;
+    color:#e3e3e3;
+    border: solid 5px #e3e3e3;
+  }
+
+  .title-box h1{
+    text-align:center;
+    font-size:50px;
+    padding:10px 0;
+  }
+
+  .title-box h2{
+    text-align:center;
+    font-size:20px;
+    padding-bottom: 10px;
+  }
+
+  .navbar{
+    overflow: hidden;
+    background-color: #4f1778;
+    color:#e3e3e3;
+    border-left: solid 5px #e3e3e3;
+    border-right: solid 5px #e3e3e3;
+    border-bottom: solid 5px #e3e3e3;
+  }
+
+  .navbar ul{
+    margin: 0;
+    padding: 10px 0;
+    list-style: none;
+  }
+
+  .navbar li{
+    display: inline-block;
+    margin-left: 0;
+  }
+
+  .navbar a{
+    color:#e3e3e3;
+    font-size: 14px;
+    padding: 14px 20px;
+  }
+
+  .navbar a:hover{
+    background-color: #6b4587;
+    color: white;
+  }
+
+  #shop-list{
+    width:80%;
+    min-height: 500px;
+    background: red;
+    margin: 35px auto 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .box{
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background: yellow;
+    margin: 20px auto;
+    box-sizing: border-box;
+    display: inline-block;
+  }
+
+</style>
 </head>
 
 <body>
-<h1>Hello World</h1>
+
+<div class="container">
+
+  <div class="title-box">
+    <h1>eVeg</h1>
+    <h2>Delivering fresh produce from the Midland's green countryside since 2014<h2>
+  </div> <!-- /title-box -->
+
+  <div class="navbar">
+    <ul>
+      <li><a href="#">temp</a></li>
+      <li><a href="#">temp</a></li>
+      <li><a href="#">temp</a></li>
+      <li><a href="#">temp</a></li>
+    </ul>
+  </div> <!-- /navbar -->
+
+  <img src="img/banana.jpg">
+
+  <div id="shop-list">
+
+    <script>
+      var productDetails = getProductDetails();
+      var x = "";
+      var imgName = "";
+      for (var product in productDetails) {
+        imgName = productDetails[product]["image"];
+        x = x + "<div class=\"box\">\n<img src=\"img/" + imgName + "\">\n</div>\n";
+      }
+      document.getElementById("shop-list").innerHTML = x;
+    </script>
+
+    <div class="box">
+      <img src="img/banana.jpg">
+    </div> <!-- /box -->
+
+    <script>
+      var productDetails = getProductDetails();
+      var x = "";
+      x = "<img src\"img/banana.jpg\">";
+      document.write(x);
+      // document.getElementById("shop-list").innerHTML = x;
+      // for (var product in productDetails) {
+      //   // x = "<img src\"img/" + productDetails[product]["image"] + ">";
+      //   x = "<img src\"img/banana.jpg\">";
+      //   document.getElementById("shop-list").innerHTML = x;
+      //   x = "";
+      // }
+    </script>
+
+
+    <div class="box"></div> <!-- /box -->
+
+  </div> <!-- /shop-list -->
+
+
+
+</div> <!-- /container -->
+
 </body>
 
 </html>

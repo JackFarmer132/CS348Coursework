@@ -10,7 +10,7 @@ function getProductDetails() {
   productDetails["carrots"]["pricePerUnit"] = 0.99;
 
   productDetails["bananas"] = {};
-  productDetails["bananas"]["images"] = "banana1.jpg";
+  productDetails["bananas"]["images"] = ["img/bananas/banana1.jpg"];
   productDetails["bananas"]["page"] = "bananas.html";
   productDetails["bananas"]["name"] = "Bananas";
   productDetails["bananas"]["description"] = "Yellow and banana-shaped";
@@ -19,7 +19,7 @@ function getProductDetails() {
   productDetails["bananas"]["pricePerUnit"] = 1.29;
 
   productDetails["coconut"] = {};
-  productDetails["coconut"]["images"] = "coconut1.jpg";
+  productDetails["coconut"]["images"] = ["img/coconuts/coconut1.jpg"];
   productDetails["coconut"]["page"] = "coconut.html";
   productDetails["coconut"]["name"] = "Coconut";
   productDetails["coconut"]["description"] = "That exotic stuff";
@@ -28,7 +28,7 @@ function getProductDetails() {
   productDetails["coconut"]["pricePerUnit"] = 2.99;
 
   productDetails["apples"] = {};
-  productDetails["apples"]["images"] = "apple1.jpg";
+  productDetails["apples"]["images"] = ["img/apples/apple1.jpg"];
   productDetails["apples"]["page"] = "apples.html";
   productDetails["apples"]["name"] = "Apples";
   productDetails["apples"]["description"] = "Red, sweet and juicy";
@@ -37,7 +37,7 @@ function getProductDetails() {
   productDetails["apples"]["pricePerUnit"] = 1.49;
 
   productDetails["cherries"] = {};
-  productDetails["cherries"]["images"] = "cherry1.jpg";
+  productDetails["cherries"]["images"] = ["img/cherries/cherry1.jpg"];
   productDetails["cherries"]["page"] = "cherries.html";
   productDetails["cherries"]["name"] = "Cherries";
   productDetails["cherries"]["description"] = "Cherry pancake anyone?";
@@ -46,7 +46,7 @@ function getProductDetails() {
   productDetails["cherries"]["pricePerUnit"] = 1.99;
 
   productDetails["tomatoes"] = {};
-  productDetails["tomatoes"]["images"] = "tomato1.jpg";
+  productDetails["tomatoes"]["images"] = ["img/tomatoes/tomato1.jpg"];
   productDetails["tomatoes"]["page"] = "tomatoes.html";
   productDetails["tomatoes"]["name"] = "Tomatoes";
   productDetails["tomatoes"]["description"] = "Red and ripe";
@@ -55,7 +55,7 @@ function getProductDetails() {
   productDetails["tomatoes"]["pricePerUnit"] = 1.99;
 
   productDetails["potatoes"] = {};
-  productDetails["potatoes"]["images"] = "potato1.jpg";
+  productDetails["potatoes"]["images"] = ["img/potatoes/potato1.jpg"];
   productDetails["potatoes"]["page"] = "potatoes.html";
   productDetails["potatoes"]["name"] = "Potatoes";
   productDetails["potatoes"]["description"] = "Boil them, bake them, mash them...";
@@ -64,7 +64,7 @@ function getProductDetails() {
   productDetails["potatoes"]["pricePerUnit"] = 0.99;
 
   productDetails["beans"] = {};
-  productDetails["beans"]["images"] = "bean1.jpg";
+  productDetails["beans"]["images"] = ["img/beans/bean1.jpg"];
   productDetails["beans"]["page"] = "beans.html";
   productDetails["beans"]["name"] = "Beans";
   productDetails["beans"]["description"] = "Green and healthy";

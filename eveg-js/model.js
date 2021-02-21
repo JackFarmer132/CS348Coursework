@@ -1,60 +1,76 @@
 function getProductDetails() {
   productDetails = {};
   productDetails["carrots"] = {};
-  productDetails["carrots"]["image"] = "carrots.gif";
+  productDetails["carrots"]["images"] = ["img/carrots/carrot1.jpg", "img/carrots/carrot2.jpg", "img/carrots/carrot3.jpg", "img/carrots/carrot4.jpg", "img/carrots/carrot5.jpeg"];
+  productDetails["carrots"]["page"] = "carrots.html";
   productDetails["carrots"]["name"] = "Carrots";
   productDetails["carrots"]["description"] = "not just for rabbits";
-  productDetails["carrots"]["units"] = "1kg";
-  productDetails["carrots"]["price"] = 0.99;
+  productDetails["carrots"]["units"] = "kg";
+  productDetails["carrots"]["price"] = 4.95;
+  productDetails["carrots"]["pricePerUnit"] = 0.99;
 
   productDetails["bananas"] = {};
-  productDetails["bananas"]["image"] = "bananas.gif";
+  productDetails["bananas"]["images"] = "banana1.jpg";
+  productDetails["bananas"]["page"] = "bananas.html";
   productDetails["bananas"]["name"] = "Bananas";
   productDetails["bananas"]["description"] = "Yellow and banana-shaped";
   productDetails["bananas"]["units"] = "500g";
-  productDetails["bananas"]["price"] = 1.29;
+  productDetails["bananas"]["price"] = 6.98;
+  productDetails["bananas"]["pricePerUnit"] = 1.29;
 
   productDetails["coconut"] = {};
-  productDetails["coconut"]["image"] = "coconut.gif";
+  productDetails["coconut"]["images"] = "coconut1.jpg";
+  productDetails["coconut"]["page"] = "coconut.html";
   productDetails["coconut"]["name"] = "Coconut";
   productDetails["coconut"]["description"] = "That exotic stuff";
-  productDetails["coconut"]["units"] = "1";
-  productDetails["coconut"]["price"] = 2.99;
+  productDetails["coconut"]["units"] = "unit";
+  productDetails["coconut"]["price"] = 5.98;
+  productDetails["coconut"]["pricePerUnit"] = 2.99;
 
   productDetails["apples"] = {};
-  productDetails["apples"]["image"] = "apples.gif";
+  productDetails["apples"]["images"] = "apple1.jpg";
+  productDetails["apples"]["page"] = "apples.html";
   productDetails["apples"]["name"] = "Apples";
   productDetails["apples"]["description"] = "Red, sweet and juicy";
-  productDetails["apples"]["units"] = "1kg";
-  productDetails["apples"]["price"] = 1.49;
+  productDetails["apples"]["units"] = "kg";
+  productDetails["apples"]["price"] = 3.99;
+  productDetails["apples"]["pricePerUnit"] = 1.49;
 
   productDetails["cherries"] = {};
-  productDetails["cherries"]["image"] = "cherries.gif";
+  productDetails["cherries"]["images"] = "cherry1.jpg";
+  productDetails["cherries"]["page"] = "cherries.html";
   productDetails["cherries"]["name"] = "Cherries";
   productDetails["cherries"]["description"] = "Cherry pancake anyone?";
   productDetails["cherries"]["units"] = "500g";
-  productDetails["cherries"]["price"] = 1.99;
+  productDetails["cherries"]["price"] = 0.99;
+  productDetails["cherries"]["pricePerUnit"] = 1.99;
 
   productDetails["tomatoes"] = {};
-  productDetails["tomatoes"]["image"] = "tomatoes.gif";
+  productDetails["tomatoes"]["images"] = "tomato1.jpg";
+  productDetails["tomatoes"]["page"] = "tomatoes.html";
   productDetails["tomatoes"]["name"] = "Tomatoes";
   productDetails["tomatoes"]["description"] = "Red and ripe";
   productDetails["tomatoes"]["units"] = "500g";
-  productDetails["tomatoes"]["price"] = 1.99;
+  productDetails["tomatoes"]["price"] = 16.99;
+  productDetails["tomatoes"]["pricePerUnit"] = 1.99;
 
   productDetails["potatoes"] = {};
-  productDetails["potatoes"]["image"] = "potatoes.gif";
+  productDetails["potatoes"]["images"] = "potato1.jpg";
+  productDetails["potatoes"]["page"] = "potatoes.html";
   productDetails["potatoes"]["name"] = "Potatoes";
   productDetails["potatoes"]["description"] = "Boil them, bake them, mash them...";
-  productDetails["potatoes"]["units"] = "1kg";
-  productDetails["potatoes"]["price"] = 0.99;
+  productDetails["potatoes"]["units"] = "kg";
+  productDetails["potatoes"]["price"] = 8.61;
+  productDetails["potatoes"]["pricePerUnit"] = 0.99;
 
   productDetails["beans"] = {};
-  productDetails["beans"]["image"] = "beans.gif";
+  productDetails["beans"]["images"] = "bean1.jpg";
+  productDetails["beans"]["page"] = "beans.html";
   productDetails["beans"]["name"] = "Beans";
   productDetails["beans"]["description"] = "Green and healthy";
-  productDetails["beans"]["units"] = "1kg";
-  productDetails["beans"]["price"] = 1.29;
+  productDetails["beans"]["units"] = "kg";
+  productDetails["beans"]["price"] = 41.01;
+  productDetails["beans"]["pricePerUnit"] = 1.29;
 
   return productDetails;
 }

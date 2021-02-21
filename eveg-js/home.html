@@ -17,10 +17,7 @@
   }
 
   body{
-    background-color:#e3e3e3;
-    color:#555555;
     font-family: Arial, Helvetica, sans-serif;
-    font-size:12px;
     margin:0;
   }
 
@@ -81,22 +78,94 @@
   #shop-list{
     width:80%;
     min-height: 500px;
-    background: red;
+    background: #e3e3e3;
     margin: 35px auto 0;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
   }
 
-  .box{
+  #shop-list a{
     position: relative;
-    width: 400px;
+    color:#555555;
+    width: 350px;
     height: 400px;
-    background: yellow;
+    background: #ffffff;
     margin: 20px auto;
     box-sizing: border-box;
     display: inline-block;
+    overflow: hidden;
+    transition: transform 0.5s;
   }
+
+  #shop-list a:hover{
+    transform: scale(1.07);
+  }
+
+  .image{
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 6% auto;
+  }
+
+  .image img{
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .title{
+    position: absolute;
+    top: 86%;
+    left: 3%;
+  }
+
+  .title h1{
+    margin: 0;
+    padding: 0 10px;
+    font-size: 18px;
+  }
+
+  .price {
+    position: absolute;
+    top: 92%;
+    left: 3%;
+  }
+
+  .price h1{
+    margin: 0;
+    padding: 0 10px;
+    font-size: 16px;
+  }
+
+  .price h1 b{
+    /* font-weight: normal; */
+    font-size: 12px;
+  }
+
+  /* .footer{
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #4f1778;
+    margin: 20px 0 0 0;
+    color: white;
+    text-align: center;
+  }
+
+  .footer p{
+    padding-top: 13px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: : 5px;
+    font-size: 10px;
+  } */
 
 </style>
 </head>
@@ -119,8 +188,6 @@
     </ul>
   </div> <!-- /navbar -->
 
-  <img src="img/banana.jpg">
-
   <div id="shop-list">
 
     <script>
@@ -128,36 +195,28 @@
       var x = "";
       var imgName = "";
       for (var product in productDetails) {
-        imgName = productDetails[product]["image"];
-        x = x + "<div class=\"box\">\n<img src=\"img/" + imgName + "\">\n</div>\n";
+        x = x + "<a style=\"display:block\" href=\"veg_pages/" + productDetails[product]["page"] + "\">";
+        x = x + "<div class=\"box\">\n<div class=\"image\">\n<img src=\"img/" + productDetails[product]["image"] + "\">\n</div>\n<div class=\"title\">\n<h1>" + productDetails[product]["name"] +"</h1>\n</div>\n<div class=\"price\">\n<h1>&pound" + productDetails[product]["price"] + " <b>(";
+        x = x + "&pound" + productDetails[product]["pricePerUnit"] + "/" + productDetails[product]["units"] + ")</b></h1>\n</div>\n</div>\n</a>\n";
       }
       document.getElementById("shop-list").innerHTML = x;
     </script>
 
-    <div class="box">
-      <img src="img/banana.jpg">
-    </div> <!-- /box -->
-
-    <script>
-      var productDetails = getProductDetails();
-      var x = "";
-      x = "<img src\"img/banana.jpg\">";
-      document.write(x);
-      // document.getElementById("shop-list").innerHTML = x;
-      // for (var product in productDetails) {
-      //   // x = "<img src\"img/" + productDetails[product]["image"] + ">";
-      //   x = "<img src\"img/banana.jpg\">";
-      //   document.getElementById("shop-list").innerHTML = x;
-      //   x = "";
-      // }
-    </script>
-
-
-    <div class="box"></div> <!-- /box -->
+    <a style="display:block" href="bananas.html">
+      <div class="box">
+        <div class="image">
+          <img src="img/banana.jpg">
+        </div> <!-- /image -->
+        <div class="title">
+          <h1>Banana Suit (not edible)</h1>
+        </div> <!-- /title -->
+        <div class="price">
+          <h1>&pound200 <b>(per kilogram)</b></h1>
+        </div> <!-- /price -->
+      </div> <!-- /box -->
+    </a>
 
   </div> <!-- /shop-list -->
-
-
 
 </div> <!-- /container -->
 

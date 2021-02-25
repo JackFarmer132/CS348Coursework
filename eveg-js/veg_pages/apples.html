@@ -19,6 +19,7 @@
   body{
     font-family: Arial, Helvetica, sans-serif;
     margin:0;
+    background-color: #e3e3e3;
   }
 
   .container{
@@ -76,18 +77,20 @@
   }
 
   #item-info{
-    width: 85%;
-    min-height: 500px;
-    background: #e3e3e3;
-    margin: 35px auto 0;
-    margin-bottom: 20px;
+    width: 1000px;
+    min-height: 650px;
+    background: #fff;
+    margin: 60px auto 0;
   }
 
   #image-block{
     position: relative;
-    width: 350px;
-    height: 350px;
-    padding: 10px;
+    width: 400px;
+    height: 400px;
+    padding-left: 20px;
+    padding-top: 15px;
+    float:left;
+    display:inline;
   }
 
   #image-block img{
@@ -99,7 +102,7 @@
   }
 
   #minipics{
-    width: 210px;
+    width: 310px;
     background: #ffffff;
     margin: 5px auto;
   }
@@ -112,11 +115,10 @@
 
   .mini{
     float: left;
-    width: 40px;
+    width: 60px;
     border: solid 1px #e3e3e3;
   }
 
-  /* Style the images inside the grid */
   .mini img{
     opacity: 0.8;
     cursor: pointer;
@@ -133,15 +135,117 @@
     display: none;
   }
 
-  .closebtn{
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    color: white;
-    font-size: 35px;
-    cursor: pointer;
+  #text-block{
+    padding-left: 440px;
+    padding-top: 22px;
   }
 
+  #veg-title{
+    font-size: 35px;
+  }
+
+  .line{
+    width: 440px;
+    height: 10px;
+    border-bottom: 1px solid #919191;
+    position: absolute;
+  }
+
+  #veg-price{
+    margin-top: 22px;
+    margin-left: 1px;
+    font-size: 28px;
+  }
+
+  #veg-price b{
+    font-weight: normal;
+    font-size: 18px;
+  }
+
+  #veg-price i{
+    font-style: normal;
+    font-size: 15px;
+  }
+
+  #veg-order-info{
+    margin-top: 10px;
+    margin-left: 1px;
+    font-size: 18px;
+    float:left;
+    display:inline;
+  }
+
+  #veg-desc{
+    margin-top: 30px;
+    margin-left: 1px;
+    font-size: 18px;
+    width: 440px;
+    margin-bottom: 10px;
+  }
+
+  .related{
+    margin-top:40px;
+    font-size: 18px;
+  }
+
+  #related-row{
+    margin-top: 5px;
+    background-color: #e3e3e3;
+    width:368px;
+    height: 88px;
+  }
+
+  #related-row img{
+    width: 80px;
+    height: 80px;
+    margin: 4px;
+  }
+
+  .dropbtn{
+    background-color: #919191;
+    color:#e3e3e3;
+    padding: 9px 15px;
+    margin-left: 8px;
+    margin-top: 2px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+
+  .dropdown{
+    position: relative;
+    display: inline-block;
+  }
+
+  #dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 30px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  #dropdown-content a{
+    color: black;
+    padding: 10px 20px;;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    border: solid 1px #e3e3e3;
+  }
+
+  #dropdown-content a:hover{
+    background-color: #bfbfbf
+  }
+
+  .dropdown:hover #dropdown-content{
+    display: block;
+  }
+
+  .dropdown:hover .dropbtn{
+    background-color: #6b4587;
+  }
 </style>
 </head>
 
@@ -168,52 +272,116 @@
 
       <script>
         var productDetails = getProductDetails();
+        veg = "apples";
         var x = "";
-        var mainImage = productDetails["apples"]["images"][0];
+        var mainImage = productDetails[veg]["images"][0];
         x = "<img src=\"../" + mainImage + "\" style=\"display: none;\" onload=\"myFunction(this)\">";
         document.getElementById("image-block").innerHTML = x;
+
+        function myFunction(imgs) {
+          var expandImg = document.getElementById("expandedImg");
+          expandImg.src = imgs.src;
+          expandImg.parentElement.style.display = "block";
+        }
       </script>
 
       <div class="expander">
-        <img id="expandedImg" style="width:350px">
+        <img id="expandedImg" style="width:400px">
       </div>
 
+      <div id="minipics"></div>
+
+    </div> <!-- /image-block -->
+
+    <div id="text-block">
+
+      <div id="veg-title"></div>
+
+      <div id="veg-price"></div>
+
+      <div id="veg-order-info">
+        Quantity:
+      </div> <!-- /veg-order-info-->
+
+      <div class="dropdown">
+        <button class="dropbtn">0</button>
+        <div id="dropdown-content"></div>
+      </div> <!-- /dropdown -->
+
+      <div class="line"></div>
+
+      <div id="veg-desc"></div>
+
+      <div class="line"></div>
+
+      <div class="related">
+        <h1>Shoppers also bought:</h1>
+        <div id="related-row"></div>
+      </div> <!-- /related -->
+
       <script>
-      function myFunction(imgs) {
-        var expandImg = document.getElementById("expandedImg");
-        expandImg.src = imgs.src;
-        expandImg.parentElement.style.display = "block";
-      }
+        var veg = "apples";
+        var productDetails = getProductDetails();
+        var vegDetails = productDetails[veg];
+
+        // script to fill in the title
+        var x = vegDetails["name"] + "\n";
+        x = x + "<div class=\"line\"></div>\n";
+        document.getElementById("veg-title").innerHTML = x;
+
+        // script to fill in pictures
+        var productDetails = getProductDetails();
+        var vegDetails = productDetails[veg];
+        var pictures = vegDetails["images"];
+        var x = "";
+        for (var pic in pictures) {
+          x = x + "<div class=\"mini\">\n<img src=\"../" + pictures[pic] + "\" onclick=\"myFunction(this);\">\n</div>\n";
+        }
+        document.getElementById("minipics").innerHTML = x;
+
+        // script to fill in the price
+        var intPrice = Math.floor(vegDetails["price"]);
+        var decPrice = Math.round((vegDetails["price"] - intPrice) * 100);
+        x = "&pound" + intPrice + ".<b>" + decPrice + "</b> <i>(&pound" + vegDetails["pricePerUnit"] + "/" + vegDetails["units"] + ")</i>\n"
+        document.getElementById("veg-price").innerHTML = x;
+
+        // script to generate the dropdown menu
+        x = "";
+        for (i=1; i<10; i++){
+          x = x + "<a href=\"../basket.html\" onclick=\"javascript:addToBasket('" + vegDetails["name"].toLowerCase() + "', " + i + ")\">" + i + "</a>\n"
+        }
+        document.getElementById("dropdown-content").innerHTML = x;
+
+        // script to generate description
+        x = vegDetails["description"];
+        document.getElementById("veg-desc").innerHTML = x;
+
+        // script to generate related products
+        x = "";
+        var vegNo = Object.keys(productDetails).length;
+        var randArr = [];
+        while (randArr.length < 4){
+          var rn = Math.floor(Math.random() * (vegNo));
+          // only recommend if new number or not the current veg index
+          if ((randArr.indexOf(rn) === -1) && (Object.keys(productDetails)[rn].localeCompare(veg) != 0)){
+            randArr.push(rn);
+          }
+        }
+        console.log(randArr);
+        for (i=0; i<4; i++){
+          var relatedVeg = Object.keys(productDetails)[randArr[i]];
+          console.log(relatedVeg);
+          x = x + "<a href=\"" + productDetails[relatedVeg]["page"] + "\"><img src=\"../" + productDetails[relatedVeg]["images"][0] + "\"></a>\n";
+        }
+        document.getElementById("related-row").innerHTML = x;
+
       </script>
 
-      <div id="minipics">
-        <script>
-          var productDetails = getProductDetails();
-          var vegDetails = productDetails["apples"];
-          var pictures = vegDetails["images"];
-          var x = "";
-          for (var pic in pictures) {
-            x = x + "<div class=\"mini\">\n<img src=\"../" + pictures[pic] + "\" onclick=\"myFunction(this);\">\n</div>\n";
-          }
-          document.getElementById("minipics").innerHTML = x;
-        </script>
-      </div> <!-- /minipics -->
+    </div> <!-- /text-block -->
 
-
-
-
-
-
-
-
-
-
-
-    </div> <!-- /image -->
   </div> <!-- /item-info -->
 
 </div> <!-- /container -->
-
 
 </body>
 

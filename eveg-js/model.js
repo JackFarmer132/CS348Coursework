@@ -145,6 +145,9 @@ function removeProductFromBasket(product) {
 }
 
 function changeProductQuantity(product, newquantity) {
+  console.log(product);
+  console.log(newquantity);
+
   document.cookie = product + "=" + newquantity.toString() + ";path=/";
 }
 

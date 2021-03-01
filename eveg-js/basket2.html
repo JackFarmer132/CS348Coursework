@@ -87,7 +87,7 @@
 
   #item-list{
     width:60%;
-    min-height: 500px;
+    min-height: 280px;
     background: #fff;
     margin-left: 3%;
     margin-top: 35px;
@@ -98,17 +98,19 @@
     flex-wrap: wrap;
   }
 
-  .subtotal{
+  #subtotal{
     position: relative;
     margin-left: auto;
     margin-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-size: 25px;
     color:#555555;
     float:right;
     display:inline;
   }
 
-  .subtotal b{
+  #subtotal b{
     font-weight: normal;
     font-size: 12px;
     float:right;
@@ -240,7 +242,7 @@
 
   #dropdown-content a{
     color: black;
-    padding: 10px 30px;
+    padding: 10px 40px;
     font-weight: bold;
     text-decoration: none;
     display: block;
@@ -257,6 +259,17 @@
 
   #dropdown:hover .dropbtn{
     background-color: #6b4587;
+  }
+
+  input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px auto;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: center;
   }
 
   #order{
@@ -338,52 +351,19 @@
   <div class="page">
 
   <div id="item-list">
-    <div class="item-row">
-      <img src="img/carrots/carrot1.jpg">
-      <div id="text-block">
-        <div class="veg-title">
-          Carrots
-        </div>
-        <div class="veg-price">
-          &pound0.99
-        </div>
-        <div class="veg-item-info">Quantity:</div>
-        <div id="dropdown">
-          <button class="dropbtn">0</button>
-          <div id="dropdown-content">
-            <a href="basket2.html" >0</a>
-            <a href="basket2.html" >1</a>
-            <a href="basket2.html" >2</a>
-            <a href="basket2.html" >3</a>
-            <a href="basket2.html" >4</a>
-            <a href="basket2.html" >5</a>
-            <a href="basket2.html" >6</a>
-            <a href="basket2.html" >7</a>
-            <a href="basket2.html" >8</a>
-            <a href="basket2.html" >9</a>
-          </div>
-        </div>
-        <div class="bin">
-          <button class="binbtn">Delete</button>
-        </div>
-        <div class="veg-dec">
-          The carrot is a root vegetable, usually orange in color, though purple, black, red, white, and yellow cultivars exist. They are a domesticated form of the wild carrot, Daucus carota, native to Europe and Southwestern Asia. The plant probably originated in Persia and was originally cultivated for its leaves and seeds. The most commonly eaten part of the plant is the taproot, although the stems and leaves are also eaten. The domestic carrot has been selectively bred for its greatly enlarged, more palatable, less woody-textured taproot.
-        </div> <!-- /veg-dec -->
-      </div> <!-- /text-block -->
-    </div> <!-- /item-row -->
 
-    <div class="item-row">
+    <!-- <div class="item-row">
       <img src="img/carrots/carrot1.jpg">
       <div id="text-block">
         <div class="veg-title">
-          Carrots
+          Carrots (4)
         </div>
         <div class="veg-price">
           &pound0.99
         </div>
         <div class="veg-item-info">Quantity:</div>
         <div id="dropdown">
-          <button class="dropbtn">0</button>
+          <button class="dropbtn">-</button>
           <div id="dropdown-content">
             <a href="basket2.html" >0</a>
             <a href="basket2.html" >1</a>
@@ -395,6 +375,23 @@
             <a href="basket2.html" >7</a>
             <a href="basket2.html" >8</a>
             <a href="basket2.html" >9</a>
+            <input type="text" id="bignum" placeholder="10+" maxlength="2">
+
+            <script>
+              var input = document.getElementById("bignum");
+              input.addEventListener("keyup", function(event) {
+                var val = input.value;
+                if (event.keyCode === 13) {
+                  if (val === parseInt(val, 10).toString()){
+                    console.log("Is an int");
+                  }
+                  else {
+                    event.preventDefault();
+                    document.getElementById("myBtn").click();
+                  }
+                }
+              });
+            </script>
           </div>
         </div>
         <div class="bin">
@@ -402,14 +399,269 @@
         </div>
         <div class="veg-dec">
           The carrot is a root vegetable, usually orange in color, though purple, black, red, white, and yellow cultivars exist. They are a domesticated form of the wild carrot, Daucus carota, native to Europe and Southwestern Asia. The plant probably originated in Persia and was originally cultivated for its leaves and seeds. The most commonly eaten part of the plant is the taproot, although the stems and leaves are also eaten. The domestic carrot has been selectively bred for its greatly enlarged, more palatable, less woody-textured taproot.
-        </div> <!-- /veg-dec -->
-      </div> <!-- /text-block -->
-    </div> <!-- /item-row -->
-    <div class="subtotal">
+        </div>
+      </div>
+    </div>  -->
+
+    <script>
+      var x = "";
+      var basket = readBasket();
+      var productDetails = getProductDetails();
+      var totals = calculateTotals();
+      var input;
+      var val;
+      var totalNo = 0;
+
+      for (var product in productDetails) {
+        if (basket[product] > 0) {
+          veg = productDetails[product];
+
+          x = x + "<div class=\"item-row\">\n";
+          x = x + "<img src=\"" + veg["images"][0] + "\">\n";
+          x = x + "<div id=\"text-block\">\n";
+          x = x + "<div class=\"veg-title\">\n";
+          x = x + veg["name"] + " (" + basket[product] + ")\n";
+
+          totalNo = totalNo + basket[product];
+
+          x = x + "</div>\n";
+          x = x + "<div class=\"veg-price\">\n";
+
+          var vegTotalPrice = (Math.round((veg["price"] * basket[product]) * 100) / 100).toFixed(2);
+
+          x = x + "&pound" + vegTotalPrice + "\n";
+          x = x + "</div>\n";
+          x = x + "<div class=\"veg-item-info\">Quantity:</div>\n";
+          x = x + "<div id=\"dropdown\">\n";
+          x = x + "<button class=\"dropbtn\">-</button>\n";
+          x = x + "<div id=\"dropdown-content\">\n";
+          x = x + "<a href=\"basket2.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 0)\" >0</a>\n";
+          x = x + "<a href=\"basket2.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 1)\" >1</a>\n";
+          x = x + "<a href=\"basket2.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 2)\" >2</a>\n";
+          x = x + "<a href=\"basket2.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 3)\" >3</a>\n";
+          x = x + "<a href=\"basket2.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 4)\" >4</a>\n";
+          x = x + "<a href=\"basket2.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 5)\" >5</a>\n";
+          x = x + "<a href=\"basket2.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 6)\" >6</a>\n";
+          x = x + "<a href=\"basket2.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 7)\" >7</a>\n";
+          x = x + "<a href=\"basket2.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 8)\" >8</a>\n";
+          x = x + "<a href=\"basket2.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 9)\" >9</a>\n";
+          x = x + "<input type=\"text\" id=\"" + product + "\" placeholder=\"10+\" maxlength=\"2\" name=\"" + product + "\">\n";
+          x = x + "</div>\n";
+          x = x + "</div>\n";
+          x = x + "<div class=\"bin\">\n";
+          x = x + "<button class=\"binbtn\">Delete</button>\n";
+          x = x + "</div>\n";
+          x = x + "<div class=\"veg-dec\">\n";
+          x = x + veg["description"];
+          x = x + "</div>\n";
+          x = x + "</div>\n";
+          x = x + "</div>\n";
+        }
+      }
+      document.getElementById("item-list").innerHTML = x;
+      x = "";
+
+      // generate subtotal below rows
+      x = x + "<div id=\"subtotal\">\n";
+      x = x + "Subtotal (" + itemNo + " items): &pound" + totals["total"] + "\n";
+      x = x + "<br />\n";
+      x = x + "<b>Exc. VAT: &pound" + totals["totalnovat"] + ", VAT: &pound" + totals["vat"] + "</b>\n";
+      x = x + "</div>\n"
+
+      document.getElementById("subtotal").innerHTML = x;
+
+      // carrot custom entry
+      if (basket["carrots"] > 0){
+        console.log("adding event listener for carrots");
+        document.getElementById("carrots").addEventListener("keyup", function(event) {
+          val = document.getElementById("carrots").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("carrots").value);
+              console.log("carrots");
+              event.preventDefault();
+              changeProductQuantity("carrots", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("carrots").value);
+              console.log("carrots");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+
+      // bananas custom entry
+      if (basket["bananas"] > 0){
+        console.log("adding event listener for bananas");
+        document.getElementById("bananas").addEventListener("keyup", function(event) {
+          val = document.getElementById("bananas").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("bananas").value);
+              console.log("bananas");
+              event.preventDefault();
+              changeProductQuantity("bananas", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("bananas").value);
+              console.log("bananas");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+
+      // coconut custom entry
+      if (basket["coconut"] > 0){
+        console.log("adding event listener for coconut");
+        document.getElementById("coconut").addEventListener("keyup", function(event) {
+          val = document.getElementById("coconut").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("coconut").value);
+              console.log("coconut");
+              event.preventDefault();
+              changeProductQuantity("coconut", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("coconut").value);
+              console.log("coconut");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+
+      // apples custom entry
+      if (basket["apples"] > 0){
+        console.log("adding event listener for apples");
+        document.getElementById("apples").addEventListener("keyup", function(event) {
+          val = document.getElementById("apples").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("apples").value);
+              console.log("apples");
+              event.preventDefault();
+              changeProductQuantity("apples", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("apples").value);
+              console.log("apples");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+
+      // cherries custom entry
+      if (basket["cherries"] > 0){
+        console.log("adding event listener for cherries");
+        document.getElementById("cherries").addEventListener("keyup", function(event) {
+          val = document.getElementById("cherries").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("cherries").value);
+              console.log("cherries");
+              event.preventDefault();
+              changeProductQuantity("cherries", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("cherries").value);
+              console.log("cherries");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+
+      // tomatoes custom entry
+      if (basket["tomatoes"] > 0){
+        console.log("adding event listener for tomatoes");
+        document.getElementById("tomatoes").addEventListener("keyup", function(event) {
+          val = document.getElementById("tomatoes").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("tomatoes").value);
+              console.log("tomatoes");
+              event.preventDefault();
+              changeProductQuantity("tomatoes", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("tomatoes").value);
+              console.log("tomatoes");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+
+      // potatoes custom entry
+      if (basket["potatoes"] > 0){
+        console.log("adding event listener for potatoes");
+        document.getElementById("potatoes").addEventListener("keyup", function(event) {
+          val = document.getElementById("potatoes").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("potatoes").value);
+              console.log("potatoes");
+              event.preventDefault();
+              changeProductQuantity("potatoes", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("potatoes").value);
+              console.log("potatoes");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+
+      // beans custom entry
+      if (basket["beans"] > 0){
+        console.log("adding event listener for beans");
+        document.getElementById("beans").addEventListener("keyup", function(event) {
+          val = document.getElementById("beans").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("beans").value);
+              console.log("beans");
+              event.preventDefault();
+              changeProductQuantity("beans", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("beans").value);
+              console.log("beans");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+
+     </script>
+
+    <div id="subtotal">
       Subtotal (2 items): &pound3.99
       <br />
       <b>Exc. VAT: &pound2.58, VAT: &pound1.41</b>
     </div> <!-- /subtotal -->
+
   </div> <!-- /item-list -->
 
 
@@ -424,6 +676,8 @@
     </div>
 
   </div> <!-- /order -->
+
+  <button id="myBtn" style="visibility:hidden;" onclick="javascript:alert('Please enter a valid number between 0 and 99')">Button</button>
 
 </div> <!-- /page -->
 

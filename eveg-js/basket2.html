@@ -76,11 +76,20 @@
     color: white;
   }
 
+  .page{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color:#555555;
+  }
+
   #item-list{
     width:60%;
     min-height: 500px;
     background: #fff;
-    margin-left: 5%;
+    margin-left: 3%;
     margin-top: 35px;
     margin-bottom: 20px;
     padding-top: 20px;
@@ -89,64 +98,135 @@
     flex-wrap: wrap;
   }
 
+  .subtotal{
+    position: relative;
+    margin-left: auto;
+    margin-right: 20px;
+    font-size: 25px;
+    color:#555555;
+    float:right;
+    display:inline;
+  }
+
+  .subtotal b{
+    font-weight: normal;
+    font-size: 12px;
+    float:right;
+    margin-top: 10px;
+
+  }
+
   .item-row{
     position: relative;
     color:#555555;
     width: 95%;
     height: 200px;
-    background: #e3e3e3;
+    background: white;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px;
     box-sizing: border-box;
     display: inline-block;
-
+    border-bottom: solid 3px #e3e3e3;
   }
 
   .item-row img{
     width: 180px;
     height: 180px;
     margin-left: 10px;
-    margin-top: 5px;
+    margin-top: 9px;
     float:left;
     display:inline;
   }
 
-  .item-row .veg-title{
+  .item-row #text-block{
+    position: relative;
+    color:#555555;
+    width: 61%;
+    height: 180px;
+    background: #fff;
     margin-left: 10px;
-    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-top: 9px;
+    box-sizing: border-box;
+    display: inline-block;
+  }
+
+  .item-row #text-block .veg-title{
+    margin-left: 10px;
+    padding-top: 40px;
     font-size: 25px;
     float:left;
     display:inline;
+    height: 30px;
   }
 
-  .item-row .veg-price{
-    margin-top: 40px;
+  .item-row #text-block .veg-price{
     margin-right: 15px;
+    padding-top: 40px;
     font-size: 25px;
     float:right;
     display:inline;
   }
 
-  .item-row h1{
-    margin-top: 80px;
-    margin-left: 203px;
+  .item-row #text-block .veg-item-info{
+    margin-top: 10px;
+    margin-right: 100%;
+    padding-left: 12px;
+    float:left;
+    display:inline;
   }
 
-  .dropbtn{
+  .item-row #text-block .veg-dec{
+    position: relative;
+    bottom: 40px;
+    width: 95%;
+    height: 50px;
+    font-size: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    background: -webkit-gradient(linear, left bottom, left top, from(#eee), to(#333));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .binbtn{
     background-color: #919191;
     color:#e3e3e3;
-    padding: 9px 15px;
-    margin-left: 8px;
-    margin-top: 2px;
+    padding: 6px 12px;
+    margin-left: 20px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 10px;
   }
 
-  .dropdown{
+  .bin{
     position: relative;
     display: inline-block;
+    margin-left: 120px;
+    bottom: 55px;
+  }
+
+  .bin:hover .binbtn{
+    background-color: #6b4587;
+  }
+
+  .dropbtn{
+    background-color: #919191;
+    color:#e3e3e3;
+    padding: 6px 12px;
+    margin-left: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+
+  #dropdown{
+    position: relative;
+    display: inline-block;
+    margin-right: 100%;
+    padding-left: 65px;
+    bottom: 26px;
   }
 
   #dropdown-content{
@@ -160,7 +240,7 @@
 
   #dropdown-content a{
     color: black;
-    padding: 10px 20px;;
+    padding: 10px 30px;
     font-weight: bold;
     text-decoration: none;
     display: block;
@@ -171,11 +251,66 @@
     background-color: #bfbfbf
   }
 
-  .dropdown:hover #dropdown-content{
+  #dropdown:hover #dropdown-content{
     display: block;
   }
 
-  .dropdown:hover .dropbtn{
+  #dropdown:hover .dropbtn{
+    background-color: #6b4587;
+  }
+
+  #order{
+    position: relative;
+    width:31%;
+    height: 190px;
+    background: #fff;
+    margin-top: 35px;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-bottom: 20px;
+    /* box-sizing: border-box;
+    display: inline-block; */
+    overflow: hidden;
+  }
+
+  #order .test{
+    position: relative;
+    overflow: hidden;
+    background: white;
+    width:100%;
+    padding-top: 10px;
+    padding-left: 10px;
+    height: 100px;
+    font-size: 25px;
+    float: left;
+    border-bottom: solid 3px #e3e3e3;
+  }
+
+  #order .test b{
+    position: relative;
+    top: 20px;
+    font-size: 35px;
+    font-weight: bold;
+  }
+
+  #order .orderbtn{
+    background-color: #919191;
+    color:#e3e3e3;
+    padding: 25px 12px;
+    font-size: 26px;
+    cursor: pointer;
+    width: 100%;
+    text-align:center
+  }
+
+  #order .orbut{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    background: white;
+  }
+
+  #order .orbut:hover .orderbtn{
     background-color: #6b4587;
   }
 
@@ -200,26 +335,97 @@
     </ul>
   </div> <!-- /navbar -->
 
+  <div class="page">
+
   <div id="item-list">
-
     <div class="item-row">
-
       <img src="img/carrots/carrot1.jpg">
-
-      <div class="veg-title">
-        Carrots
-      </div> <!-- /item-row -->
-
-      <div class="veg-price">
-        &pound0.99
-      </div> <!-- /veg-price -->
-
-      <h1>Quantity:</h1>
-
+      <div id="text-block">
+        <div class="veg-title">
+          Carrots
+        </div>
+        <div class="veg-price">
+          &pound0.99
+        </div>
+        <div class="veg-item-info">Quantity:</div>
+        <div id="dropdown">
+          <button class="dropbtn">0</button>
+          <div id="dropdown-content">
+            <a href="basket2.html" >0</a>
+            <a href="basket2.html" >1</a>
+            <a href="basket2.html" >2</a>
+            <a href="basket2.html" >3</a>
+            <a href="basket2.html" >4</a>
+            <a href="basket2.html" >5</a>
+            <a href="basket2.html" >6</a>
+            <a href="basket2.html" >7</a>
+            <a href="basket2.html" >8</a>
+            <a href="basket2.html" >9</a>
+          </div>
+        </div>
+        <div class="bin">
+          <button class="binbtn">Delete</button>
+        </div>
+        <div class="veg-dec">
+          The carrot is a root vegetable, usually orange in color, though purple, black, red, white, and yellow cultivars exist. They are a domesticated form of the wild carrot, Daucus carota, native to Europe and Southwestern Asia. The plant probably originated in Persia and was originally cultivated for its leaves and seeds. The most commonly eaten part of the plant is the taproot, although the stems and leaves are also eaten. The domestic carrot has been selectively bred for its greatly enlarged, more palatable, less woody-textured taproot.
+        </div> <!-- /veg-dec -->
+      </div> <!-- /text-block -->
     </div> <!-- /item-row -->
 
-
+    <div class="item-row">
+      <img src="img/carrots/carrot1.jpg">
+      <div id="text-block">
+        <div class="veg-title">
+          Carrots
+        </div>
+        <div class="veg-price">
+          &pound0.99
+        </div>
+        <div class="veg-item-info">Quantity:</div>
+        <div id="dropdown">
+          <button class="dropbtn">0</button>
+          <div id="dropdown-content">
+            <a href="basket2.html" >0</a>
+            <a href="basket2.html" >1</a>
+            <a href="basket2.html" >2</a>
+            <a href="basket2.html" >3</a>
+            <a href="basket2.html" >4</a>
+            <a href="basket2.html" >5</a>
+            <a href="basket2.html" >6</a>
+            <a href="basket2.html" >7</a>
+            <a href="basket2.html" >8</a>
+            <a href="basket2.html" >9</a>
+          </div>
+        </div>
+        <div class="bin">
+          <button class="binbtn">Delete</button>
+        </div>
+        <div class="veg-dec">
+          The carrot is a root vegetable, usually orange in color, though purple, black, red, white, and yellow cultivars exist. They are a domesticated form of the wild carrot, Daucus carota, native to Europe and Southwestern Asia. The plant probably originated in Persia and was originally cultivated for its leaves and seeds. The most commonly eaten part of the plant is the taproot, although the stems and leaves are also eaten. The domestic carrot has been selectively bred for its greatly enlarged, more palatable, less woody-textured taproot.
+        </div> <!-- /veg-dec -->
+      </div> <!-- /text-block -->
+    </div> <!-- /item-row -->
+    <div class="subtotal">
+      Subtotal (2 items): &pound3.99
+      <br />
+      <b>Exc. VAT: &pound2.58, VAT: &pound1.41</b>
+    </div> <!-- /subtotal -->
   </div> <!-- /item-list -->
+
+
+  <div id="order">
+
+    <div class="test">
+      Subtotal (2 items) is:<br /><b>&pound3.00</b>
+    </div> <!-- /subtotal -->
+
+    <div class="orbut">
+      <button class="orderbtn">Proceed to Checkout</button>
+    </div>
+
+  </div> <!-- /order -->
+
+</div> <!-- /page -->
 
 </div> <!-- /container -->
 

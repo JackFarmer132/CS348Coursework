@@ -32,6 +32,7 @@
     background-color: #4f1778;
     color:#e3e3e3;
     border: solid 5px #e3e3e3;
+    min-width: 900px;
   }
 
   .title-box h1{
@@ -53,6 +54,7 @@
     border-left: solid 5px #e3e3e3;
     border-right: solid 5px #e3e3e3;
     border-bottom: solid 5px #e3e3e3;
+    min-width: 900px;
   }
 
   #navbar ul{
@@ -80,6 +82,7 @@
 
   #page{
     width: 100%;
+    min-width: 900px;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -522,7 +525,6 @@
       x = "";
 
       // generate subtotal above checkout button
-
       x = x + "<div class=\"test\">\n";
       x = x + "Subtotal (" + totalNo + " items) is:<br /><b>&pound" + (Math.round(totals["total"] * 100) / 100).toFixed(2) + "</b>\n";
       x = x + "</div>\n";

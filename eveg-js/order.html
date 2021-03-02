@@ -1,47 +1,595 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
-  <head>
-    <title></title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
-    <script type="text/javascript" src="model.js"></script>
-  </head>
-  <body style="background-color: #bbb;" onload="createEmptyOrder();">
-    <form>
-      <table>
-       <tr>
-         <td>
-           Title: <input type="text" name="title" id="title" value="" style="width: 20px;" />
-           First Name: <input type="text" name="firstname" id="firstname" value="" style="width: 120px;" />
-           Surname: <input type="text" name="surname" id="surname" value="" style="width: 120px;" />
-         </td>
-       </tr>
-       <tr>
-         <td>
-           Number: <input type="text" name="number" id="number" value="" style="width: 30px;" />
-           Street: <input type="text" name="street" id="street" value="" style="width: 120px;" />
-         </td>
-       </tr>
-       <tr>
-         <td>
-           Postcode: <input type="text" name="postcode" id="postcode" value="" style="width: 40px;" />
-           City: <input type="text" name="city" id="city" value="" style="width: 120px;" />
-           Country: <input type="text" name="country" id="country" value="" style="width: 120px;" />
-         </td>
-       </tr>
-       <tr>
-         <td>
-           Card Type: <div style="display: inline-block;"><input type="radio" name="cardtype" id="solo" value="Solo" /> Solo<br /><input type="radio" name="cardtype" id="switch" value="Switch" /> Switch<br /><input type="radio" name="cardtype" id="mastercard" value="Mastercard" /> Mastercard<br /><input type="radio" name="cardtype" id="visa" value="Visa" /> Visa</div> 
-           Card Number: <input type="text" name="cardnumber" id="cardnumber" value="" style="width: 120px;" />
-           Expiry Date: <input type="text" name="month" id="month" value="" style="width: 10px;" /> <input type="text" name="year" id="year" value="" style="width: 10px;" />
-         </td>
-       </tr>
-       <tr>
-         <td style="text-align: center;">
-           <input type="button" name="cancel" value="Cancel" onclick="self.close()" />
-           <input type="button" name="proceed" value="Proceed" onclick="setName();setAddress();setCardDetails();window.open('invoice.html');self.close();"/>
-         </td>
-       </tr>
-      </table>
-    </form>
-  </body>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+<meta charset="utf-8">
+<title>Order</title>
+<link rel="shortcut icon" type="image/png" href="img/icon.png"/>
+<script type="text/javascript" src="model.js"></script>
+<style>
+
+  * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+  }
+
+  body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin:0;
+    background:#e3e3e3;
+    color:#555555;
+  }
+
+  .container{
+    width:100%;
+    margin:auto;
+  }
+
+  .title-box{
+    background-color: #4f1778;
+    color:#e3e3e3;
+    border: solid 5px #e3e3e3;
+  }
+
+  .title-box h1{
+    text-align:center;
+    font-size:50px;
+    padding:10px 0;
+  }
+
+  .title-box h2{
+    text-align:center;
+    font-size:20px;
+    padding-bottom: 10px;
+  }
+
+  #navbar{
+    overflow: hidden;
+    background-color: #4f1778;
+    color:#e3e3e3;
+    border-left: solid 5px #e3e3e3;
+    border-right: solid 5px #e3e3e3;
+    border-bottom: solid 5px #e3e3e3;
+    min-width: 900px;
+  }
+
+  #navbar basket-link{
+    float: right;
+  }
+  #navbar basket-link ul{
+    margin: 0;
+    padding: 10px 0;
+    list-style: none;
+  }
+
+  #navbar basket-link li{
+    display: inline-block;
+    margin-left: 0;
+  }
+
+  #navbar basket-link a{
+    color:#e3e3e3;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 14px 20px;
+  }
+
+  #navbar basket-link a:hover{
+    background-color: #6b4587;
+    color: white;
+  }
+
+  #navbar ul{
+    margin: 0;
+    padding: 10px 0;
+    list-style: none;
+  }
+
+  #navbar li{
+    display: inline-block;
+    margin-left: 0;
+  }
+
+  #navbar a{
+    color:#e3e3e3;
+    font-size: 16px;
+    padding: 14px 20px;
+    text-decoration: none;
+  }
+
+  #navbar a:hover{
+    background-color: #6b4587;
+    color: white;
+  }
+
+  label{
+    font-weight: bold;
+  }
+
+  #block{
+    width:70%;
+    min-height: 500px;
+    background: #e3e3e3;
+    margin: 35px auto;
+    margin-bottom: 20px;
+  }
+
+  #block #lhs{
+    float: left;
+    position: relative;
+    width: 49.9%;
+    min-height: 500px;
+    background: white;
+    padding-top: 15px;
+    margin-bottom: 20px;
+  }
+
+  #block #lhs h2{
+    margin-top: 20px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  #block #rhs{
+    float: right;
+    width: 49.9%;
+    background: white;
+  }
+
+  .line{
+    width: 90%;
+    margin: 20px auto;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    display:block;
+  }
+
+  #radio-holder{
+    width: 80%;
+    margin: 10px auto;
+    margin-bottom: 20px;
+    display:block;
+  }
+
+  input[type=text]{
+    width: 80%;
+    font-size: 16px;
+    padding: 9px 20px;
+    margin: 0 auto;
+    position: relative;
+    display:block;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    margin-bottom: 15px;
+    background: #f2f2f2;
+  }
+
+  #expiry{
+    width: 80%;
+    margin: 0 auto;
+    display:block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  #expiry input[type=text]{
+    width: 20%;
+    font-size: 16px;
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    margin-left: 10px;
+    margin-right: 0;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    float:left;
+    text-align: center;
+    background: #f2f2f2;
+  }
+
+  #expiry h1{
+    margin-top: 10px;
+    margin-bottom: auto;
+    margin-left: 10px;
+    font-size: 40px;
+    font-weight: normal;
+  }
+
+  form{
+    margin-top: 10px;
+  }
+
+  label{
+    margin-left: 10%;
+    font-size: 16px;
+  }
+
+  input[type=text]:focus {
+    border: 1px solid #555;
+    background: white;
+  }
+
+  #orders{
+    width: 90%;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    position: relative;
+    display:block;
+    font-size: 18px;
+    font-weight: bold;
+    background: #e3e3e3;
+    color: black;
+  }
+
+  #orders .line{
+    width: 97%;
+    margin: 10px auto;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    display:block;
+  }
+
+  #orders .row{
+    width: 100%;
+    display:block;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  #orders .row .veg{
+    margin-left: 10px;
+  }
+
+  #orders .row .price{
+    margin-left: auto;
+    margin-right: 10px;
+  }
+
+  #orders .row .total{
+    margin-top: 10px;
+    margin-left: 15px;
+    font-size: 25px;
+    padding-bottom: 10px;
+  }
+
+  #orders .row .total-price{
+    margin-left: auto;
+    margin-top: 10px;
+    margin-right: 15px;
+    font-size: 25px;
+  }
+
+  #paybtn{
+    background-color: #919191;
+    color:#e3e3e3;
+    padding: 25px 12px;
+    font-size: 30px;
+    cursor: pointer;
+    width: 100%;
+    text-align:center
+  }
+
+  .pbut{
+    position: relative;
+    width: 70%;
+    margin: 30px auto;
+    display:block;
+  }
+
+  .pbut:hover #paybtn{
+    background-color: #6b4587;
+  }
+
+  #title{
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+    text-align: center;
+  }
+
+  input[type=submit]{
+    background-color: #919191;
+    color:#e3e3e3;
+    padding: 25px 12px;
+    font-size: 30px;
+    cursor: pointer;
+    width: 100%;
+    text-align:center;
+    position: relative;
+    width: 70%;
+    margin: 30px auto;
+    display:block;
+  }
+
+  input[type=submit]:hover{
+    background-color: #6b4587;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="title-box">
+    <h1>eVeg</h1>
+    <h2>Delivering fresh produce from the Midland's green countryside since 2014<h2>
+  </div> <!-- /title-box -->
+
+  <div id="navbar"></div> <!-- /navbar -->
+
+  <script>
+    x = "";
+    x = x + "<ul>\n";
+    x = x + "<li><a href=\"home.html\">Home</a></li>\n";
+    x = x + "<li><a href=\"longveg.html\">Long Veggies</a></li>\n";
+    x = x + "<li><a href=\"roundveg.html\">Round Veggies</a></li>\n";
+    x = x + "</ul>\n";
+    document.getElementById("navbar").innerHTML = x;
+  </script>
+
+    <form id="frm">
+    <div id="block">
+
+        <div id="lhs">
+
+          <div id="title">
+            Please enter your details
+          </div>
+          <div class="line"></div>
+
+
+            <label for="Full Name">Full Name*</label>
+            <input type="text" id="Full Name" maxlength="20" name="Full Name">
+
+            <label for="Phone Number">Phone Number*</label>
+            <input type="text" id="Phone Number" maxlength="16" name="Phone Number">
+
+            <label for="Postcode">Postcode*</label>
+            <input type="text" id="Postcode" maxlength="8" name="Postcode">
+
+            <label for="Address Line 1">Address Line 1*</label>
+            <input type="text" id="Address Line 1" maxlength="25" name="Address Line 1">
+
+            <label for="Address Line 2">Address Line 2 (optional)</label>
+            <input type="text" id="Address Line 2" maxlength="25" name="Address Line 2">
+
+            <label for="Town/City">Town/City*</label>
+            <input type="text" id="Town/City" maxlength="20" name="Town/City">
+
+            <label for="County">County*</label>
+            <input type="text" id="County" maxlength="20" name="County">
+
+            <div class="line"></div>
+
+            <label for="radio-holder">Card Type*</label>
+            <div id="radio-holder">
+              <label for="solo">Solo</label>
+              <input type="radio" name="cardtype" onclick="saveCardType('Solo');" id="solo" value="Solo" />
+
+              <label for="switch">Switch</label>
+              <input type="radio" name="cardtype" onclick="saveCardType('Switch');" id="switch" value="Switch" />
+
+              <label for="mastercard">Mastercard</label>
+              <input type="radio" name="cardtype" onclick="saveCardType('Mastercard');" id="mastercard" value="Mastercard" />
+
+              <label for="visa">Visa</label>
+              <input type="radio" name="cardtype" onclick="saveCardType('Visa');" id="visa" value="Visa" />
+            </div>
+
+            <label for="Card Number">Card Number*</label>
+            <input type="text" id="Card Number" maxlength="19" name="Card Number" placeholder="XXXX XXXX XXXX XXXX">
+
+            <label for="Card Holder Name">Card Holder*</label>
+            <input type="text" id="Card Holder Name" maxlength="20" name="Card Holder Name">
+
+            <label for="expiry">Expiry Date*</label>
+            <div id="expiry">
+              <input type="text" id="Expiry Month" maxlength="2" name="Expiry Month" placeholder="XX">
+              <h1>/</h1>
+              <input type="text" id="Expiry Year" maxlength="2" name="Expiry Year" placeholder="XX">
+            </div>
+
+
+          <h2>(Fields with * are required and must be filled)</h2>
+        </div> <!-- /lhs -->
+
+        <div id="rhs">
+          <div id="orders">
+
+            <!-- <div class="row">
+              <div class="veg">Carrots(10)</div>
+              <div class="price">&pound7.09</div>
+            </div>
+            <div class="line"></div>
+
+            <div class="row">
+              <div class="total">Total:</div>
+              <div class="total-price">&pound7.09</div>
+            </div> -->
+
+          </div> <!-- /orders -->
+
+          <script>
+            var x = "";
+            var basket = readBasket();
+            var productDetails = getProductDetails();
+            var totals = calculateTotals();
+            var input;
+            var val;
+            var totalNo = 0;
+
+            for (var product in productDetails) {
+              if (basket[product] > 0) {
+                totalNo += parseInt(basket[product],10);
+                x = x + "<div class=\"row\">\n";
+                x = x + "<div class=\"veg\">" + productDetails[product]["name"] + " (" + basket[product] + ")</div>\n";
+
+                var vegTotalPrice = (Math.round((productDetails[product]["price"] * basket[product]) * 100) / 100).toFixed(2);
+
+
+                x = x + "<div class=\"price\">&pound" + vegTotalPrice + "</div>\n";
+                x = x + "</div>\n";
+                x = x + "<div class=\"line\"></div>\n";
+              }
+            }
+
+            x = x + "<div class=\"row\">\n";
+            x = x + "<div class=\"total\">Total (" + totalNo + "):</div>\n";
+            x = x + "<div class=\"total-price\">&pound" + (Math.round(totals["total"] * 100) / 100).toFixed(2) + "</div>\n";
+            x = x + "</div>\n";
+
+            document.getElementById("orders").innerHTML = x;
+
+          </script>
+
+          <div class="pbut">
+            <a><button id="paybtn">Buy Now</button></a>
+          </div>
+          <!-- <input type="submit" value="Send Request"> -->
+
+          <p id="temp"></p>
+
+          <script>
+
+          function saveCardType(card) {
+            sessionStorage.setItem('cardtype', card);
+          }
+
+          document.getElementById("paybtn").addEventListener("click", function(event) {
+            event.preventDefault();
+
+            var x = document.getElementById("frm");
+            var results = [];
+            var i;
+
+            for (i = 0; i < x.length ;i++) {
+              results[i] = x.elements[i].value;
+            }
+
+            name = results[0];
+            number = results[1];
+            tempNumber = number;
+            postcode = results[2];
+            addressone = results[3];
+            addresstwo = results[4];
+            town = results[5];
+            county = results[6];
+
+            cardno = results[11];
+            cardholder = results[12];
+            expirymonth = results[13];
+            expiryyear = results[14];
+
+            // validate name contains only letters
+            if ((!/^[a-zA-Z\s]*$/.test(name)) || (name == "")) {
+              javascript:alert("Please ensure the 'Full Name' field is filled in and contains only letters");
+            }
+            // validate number contains only numbers
+            else if (number.charAt(0) == "+") {
+              tempNumber = "";
+              for (i = 1; i < (number.length + 1); i++){
+                tempNumber = tempNumber + number.charAt(i);
+              }
+            }
+            else if ((!/^(?=.*\d)[\d ]+$/.test(tempNumber)) || (tempNumber == "")) {
+              javascript:alert("Please ensure the 'Phone Number' field is filled in and contains only numbers");
+            }
+
+            // validates postcode is given
+            else if (postcode == "") {
+              javascript:alert("Please ensure the 'Postcode' field is filled in");
+            }
+
+            // validates addressone is given
+            else if (addressone == "") {
+              javascript:alert("Please ensure the 'Address Line 1' field is filled in");
+            }
+
+            // validate town contains only letters
+            else if ((!/^[a-zA-Z\s]*$/.test(town)) || (town == "")) {
+              javascript:alert("Please ensure the 'Town/City' field is filled in and contains only letters");
+            }
+
+            // validate county contains only letters
+            else if ((!/^[a-zA-Z\s]*$/.test(county)) || (county == "")) {
+              javascript:alert("Please ensure the 'County' field is filled in and contains only letters");
+            }
+
+            // validate card number contains only numbers
+            else if ((!/^(?=.*\d)[\d ]+$/.test(cardno)) || (cardno == "") || (cardno.length < 16)) {
+              javascript:alert("Please ensure the 'Card Number' field is filled in correctly and contains only numbers");
+            }
+
+            // validate card holder contains only letters
+            else if ((!/^[a-zA-Z\s]*$/.test(cardholder)) || (cardholder == "")) {
+              javascript:alert("Please ensure the 'Card Holder' field is filled in and contains only letters");
+            }
+
+            // validate expirymonth contains only numbers
+            else if ((!/^(?=.*\d)[\d ]+$/.test(expirymonth)) || (expirymonth == "")) {
+              javascript:alert("Please ensure the first 'Expiry Date' field is filled in correctly and contains only valid month numbers");
+            }
+
+            // validate expiryyear contains only numbers
+            else if ((!/^(?=.*\d)[\d ]+$/.test(expiryyear)) || (expiryyear == "")) {
+              javascript:alert("Please ensure the second 'Expiry Date' field is filled in correctly and contains only numbers");
+            }
+
+            // validates if cardtype has been filled in elsewhere
+            else if (sessionStorage.getItem("cardtype") === null) {
+              javascript:alert("Please choose an option from the available Card Types");
+            }
+
+            // else it's all valid, so save it and move on
+            else{
+              // give these to local storage
+              sessionStorage.setItem('name', name);
+              sessionStorage.setItem('number', number);
+              sessionStorage.setItem('postcode', postcode);
+              sessionStorage.setItem('addressone', addressone);
+              sessionStorage.setItem('addresstwo', addresstwo);
+              sessionStorage.setItem('town', town);
+              sessionStorage.setItem('county', county);
+              sessionStorage.setItem('cardno', cardno);
+              sessionStorage.setItem('cardholder', cardholder);
+              sessionStorage.setItem('expirymonth', expirymonth);
+              sessionStorage.setItem('expiryyear', expiryyear);
+
+              window.location.href = "check.html";
+            }
+          });
+          </script>
+
+        </div> <!-- /rhs -->
+
+    </div> <!-- /block -->
+
+  </form>
+
+</body>
+
 </html>

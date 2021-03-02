@@ -52,7 +52,6 @@
     border-left: solid 5px #e3e3e3;
     border-right: solid 5px #e3e3e3;
     border-bottom: solid 5px #e3e3e3;
-    min-width: 900px;
   }
 
   #navbar basket-link{
@@ -104,78 +103,6 @@
     color: white;
   }
 
-  #shop-list{
-    width:80%;
-    min-height: 500px;
-    background: #e3e3e3;
-    margin: 35px auto 0;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
-  #shop-list a{
-    position: relative;
-    color:#555555;
-    width: 350px;
-    height: 400px;
-    background: #ffffff;
-    margin: 20px auto;
-    box-sizing: border-box;
-    display: inline-block;
-    overflow: hidden;
-    transition: transform 0.5s;
-  }
-
-  #shop-list a:hover{
-    transform: scale(1.07);
-  }
-
-  .image{
-    position: relative;
-    width: 300px;
-    height: 300px;
-    margin: 6% auto;
-  }
-
-  .image img{
-    max-width: 100%;
-    width: 100%;
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .title{
-    position: absolute;
-    top: 86%;
-    left: 3%;
-  }
-
-  .title h1{
-    margin: 0;
-    padding: 0 10px;
-    font-size: 18px;
-  }
-
-  .price {
-    position: absolute;
-    top: 92%;
-    left: 3%;
-  }
-
-  .price h1{
-    margin: 0;
-    padding: 0 10px;
-    font-size: 16px;
-  }
-
-  .price h1 b{
-    /* font-weight: normal; */
-    font-size: 12px;
-  }
-
 </style>
 </head>
 
@@ -218,22 +145,35 @@
     document.getElementById("navbar").innerHTML = x;
   </script>
 
-  <div id="shop-list">
+  <script>
 
-    <script>
-      var productDetails = getProductDetails();
-      var x = "";
-      for (var product in productDetails) {
-        x = x + "<a style=\"display:block\" href=\"veg_pages/" + productDetails[product]["page"] + "\">";
-        x = x + "<div class=\"box\">\n<div class=\"image\">\n<img src=\"" + productDetails[product]["images"][0] + "\">\n</div>\n<div class=\"title\">\n<h1>" + productDetails[product]["name"] +"</h1>\n</div>\n<div class=\"price\">\n<h1>&pound" + productDetails[product]["price"] + " <b>(";
-        x = x + "&pound" + productDetails[product]["pricePerUnit"] + "/" + productDetails[product]["units"] + ")</b></h1>\n</div>\n</div>\n</a>\n";
-      }
-      document.getElementById("shop-list").innerHTML = x;
-    </script>
+    var name = sessionStorage.getItem('name');
+    var number = sessionStorage.getItem('number');
+    var postcode = sessionStorage.getItem('postcode');
+    var addressone = sessionStorage.getItem('addressone');
+    var addresstwo = sessionStorage.getItem('addresstwo');
+    var town = sessionStorage.getItem('town');
+    var county = sessionStorage.getItem('county');
+    var cardtype = sessionStorage.getItem('cardtype');
+    var cardno = sessionStorage.getItem('cardno');
+    var cardholder = sessionStorage.getItem('cardholder');
+    var expirymonth = sessionStorage.getItem('expirymonth');
+    var expiryyear = sessionStorage.getItem('expiryyear');
 
-  </div> <!-- /shop-list -->
+    console.log(name);
+    console.log(number);
+    console.log(postcode);
+    console.log(addressone);
+    console.log(addresstwo);
+    console.log(town);
+    console.log(county);
+    console.log(cardtype);
+    console.log(cardno);
+    console.log(cardholder);
+    console.log(expirymonth);
+    console.log(expiryyear);
 
-</div> <!-- /container -->
+  </script>
 
 </body>
 

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+<meta charset="utf-8">
+<title>Home</title>
+<link rel="shortcut icon" type="image/png" href="img/icon.png"/>
+<script type="text/javascript" src="model.js"></script>
+<style>
+
+  * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+  }
+
+  body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin:0;
+    background-color: #e3e3e3;
+    color: #363636;
+  }
+
+  .container{
+    width:100%;
+    margin:auto;
+  }
+
+  .title-box{
+    background-color: #4f1778;
+    color:#e3e3e3;
+    border: solid 5px #e3e3e3;
+  }
+
+  .title-box h1{
+    text-align:center;
+    font-size:50px;
+    padding:10px 0;
+  }
+
+  .title-box h2{
+    text-align:center;
+    font-size:20px;
+    padding-bottom: 10px;
+  }
+
+  #navbar{
+    overflow: hidden;
+    background-color: #4f1778;
+    color:#e3e3e3;
+    border-left: solid 5px #e3e3e3;
+    border-right: solid 5px #e3e3e3;
+    border-bottom: solid 5px #e3e3e3;
+  }
+
+  #navbar basket-link{
+    float: right;
+  }
+  #navbar basket-link ul{
+    margin: 0;
+    padding: 10px 0;
+    list-style: none;
+  }
+
+  #navbar basket-link li{
+    display: inline-block;
+    margin-left: 0;
+  }
+
+  #navbar basket-link a{
+    color:#e3e3e3;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 14px 20px;
+  }
+
+  #navbar basket-link a:hover{
+    background-color: #6b4587;
+    color: white;
+  }
+
+  #navbar ul{
+    margin: 0;
+    padding: 10px 0;
+    list-style: none;
+  }
+
+  #navbar li{
+    display: inline-block;
+    margin-left: 0;
+  }
+
+  #navbar a{
+    color:#e3e3e3;
+    font-size: 16px;
+    padding: 14px 20px;
+    text-decoration: none;
+  }
+
+  #navbar a:hover{
+    background-color: #6b4587;
+    color: white;
+  }
+
+  #block{
+    width: 60%;
+    min-height: 270px;
+    background: white;
+    margin-top: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    max-width: 650px;
+    padding-bottom: 15px;
+  }
+
+  #block h1{
+    position: relative;
+    margin-left: 20px;
+    padding-top: 20px;
+    font-size: 27px;
+  }
+
+  #block h2{
+    margin-left: 40px;
+    font-size: 17px;
+    font-weight: normal;
+    margin-top: 10px;
+  }
+
+  .line{
+    width: 90%;
+    margin: 15px auto;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    display:block;
+  }
+
+  #button-row{
+    background: red;
+    width: 65%;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;#
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .btn{
+    background-color: #919191;
+    color:#e3e3e3;
+    padding: 25px 12px;
+    font-size: 30px;
+    cursor: pointer;
+    width: 100%;
+    text-align:center
+  }
+
+  .but{
+    position: relative;
+    display: inline block;
+    width: 49%;
+    float: left;
+    margin: 0 auto;
+    border: solid 1px #e3e3e3;
+
+  }
+
+  .but:hover .btn{
+    background-color: #6b4587;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="title-box">
+    <h1>eVeg</h1>
+    <h2>Delivering fresh produce from the Midland's green countryside since 2014<h2>
+  </div> <!-- /title-box -->
+
+  <div id="navbar"></div> <!-- /navbar -->
+
+  <script>
+    x = "";
+    x = x + "<ul>\n";
+    x = x + "<li><a href=\"home.html\">Home</a></li>\n";
+    x = x + "<li><a href=\"longveg.html\">Long Veggies</a></li>\n";
+    x = x + "<li><a href=\"roundveg.html\">Round Veggies</a></li>\n";
+    x = x + "</ul>\n";
+    document.getElementById("navbar").innerHTML = x;
+  </script>
+
+  <div id="block"></div>
+
+  <script>
+    var name = sessionStorage.getItem('name');
+    var number = sessionStorage.getItem('number');
+    var postcode = sessionStorage.getItem('postcode');
+    var addressone = sessionStorage.getItem('addressone');
+    var addresstwo = sessionStorage.getItem('addresstwo');
+    var town = sessionStorage.getItem('town');
+    var county = sessionStorage.getItem('county');
+    var cardtype = sessionStorage.getItem('cardtype');
+    var cardno = sessionStorage.getItem('cardno');
+    var cardholder = sessionStorage.getItem('cardholder');
+    var expirymonth = sessionStorage.getItem('expirymonth');
+    var expiryyear = sessionStorage.getItem('expiryyear');
+    var x = "";
+    var i;
+    var tempcardno = "";
+
+    for (i = 0; i <= cardno.length; i++) {
+      // if looking at last characters, add these
+      if ((i + 4 >= cardno.length) || (cardno.charAt(i) == " ")) {
+        tempcardno = tempcardno + cardno.charAt(i);
+      }
+      // otherwise put an X to block it out
+      else {
+        tempcardno = tempcardno + "X";
+      }
+    }
+
+    if (addresstwo == "") {
+      addresstwo = "(none)";
+    }
+
+    x = x + "<h1>Is this correct?</h1>\n";
+    x = x + "<div class=\"line\"></div>\n";
+    x = x + "<h2><b>Full Name: </b>" + name + "</h2>\n";
+    x = x + "<h2><b>Phone Number: </b>" + number + "</h2>\n";
+    x = x + "<h2><b>Postcode: </b>" + postcode + "</h2>\n";
+    x = x + "<h2><b>Address Line 1 :</b>" + addressone + "</h2>\n";
+    x = x + "<h2><b>Address Line 2 :</b>" + addresstwo + "</h2>\n";
+    x = x + "<h2><b>Town/City: </b>" + town + "</h2>\n";
+    x = x + "<h2><b>County: </b>" + county + "</h2>\n";
+    x = x + "<h2><b>Card Type: </b>" + cardtype + "</h2>\n";
+    x = x + "<h2><b>Card Number: </b>" + tempcardno + "</h2>\n";
+    x = x + "<h2><b>Expiry Month: </b>" + expirymonth + "</h2>\n";
+    x = x + "<h2><b>Expiry Year: </b>" + expiryyear + "</h2>\n";
+
+    document.getElementById("block").innerHTML = x;
+
+  </script>
+
+  <div id="button-row">
+    <div class="but">
+      <a href="javascript:history.back()"><button class="btn">Change Details</button></a>
+    </div>
+    <div class="but">
+      <a href="finished.html"><button class="btn">Complete Order</button></a>
+    </div>
+  </div>
+
+
+
+  <!-- <script>
+
+    var name = sessionStorage.getItem('name');
+    var number = sessionStorage.getItem('number');
+    var postcode = sessionStorage.getItem('postcode');
+    var addressone = sessionStorage.getItem('addressone');
+    var addresstwo = sessionStorage.getItem('addresstwo');
+    var town = sessionStorage.getItem('town');
+    var county = sessionStorage.getItem('county');
+    var cardtype = sessionStorage.getItem('cardtype');
+    var cardno = sessionStorage.getItem('cardno');
+    var cardholder = sessionStorage.getItem('cardholder');
+    var expirymonth = sessionStorage.getItem('expirymonth');
+    var expiryyear = sessionStorage.getItem('expiryyear');
+
+    console.log(name);
+    console.log(number);
+    console.log(postcode);
+    console.log(addressone);
+    console.log(addresstwo);
+    console.log(town);
+    console.log(county);
+    console.log(cardtype);
+    console.log(cardno);
+    console.log(cardholder);
+    console.log(expirymonth);
+    console.log(expiryyear);
+
+  </script> -->
+
+</body>
+
+</html>

@@ -45,7 +45,7 @@
     padding-bottom: 10px;
   }
 
-  .navbar{
+  #navbar{
     overflow: hidden;
     background-color: #4f1778;
     color:#e3e3e3;
@@ -54,24 +54,51 @@
     border-bottom: solid 5px #e3e3e3;
   }
 
-  .navbar ul{
+  #navbar basket-link{
+    float: right;
+  }
+  #navbar basket-link ul{
     margin: 0;
     padding: 10px 0;
     list-style: none;
   }
 
-  .navbar li{
+  #navbar basket-link li{
     display: inline-block;
     margin-left: 0;
   }
 
-  .navbar a{
+  #navbar basket-link a{
     color:#e3e3e3;
-    font-size: 14px;
+    text-decoration: none;
+    font-size: 16px;
     padding: 14px 20px;
   }
 
-  .navbar a:hover{
+  #navbar basket-link a:hover{
+    background-color: #6b4587;
+    color: white;
+  }
+
+  #navbar ul{
+    margin: 0;
+    padding: 10px 0;
+    list-style: none;
+  }
+
+  #navbar li{
+    display: inline-block;
+    margin-left: 0;
+  }
+
+  #navbar a{
+    color:#e3e3e3;
+    font-size: 16px;
+    padding: 14px 20px;
+    text-decoration: none;
+  }
+
+  #navbar a:hover{
     background-color: #6b4587;
     color: white;
   }
@@ -228,7 +255,7 @@
 
   #dropdown-content a{
     color: black;
-    padding: 10px 20px;;
+    padding: 10px 50px;;
     font-weight: bold;
     text-decoration: none;
     display: block;
@@ -246,6 +273,17 @@
   .dropdown:hover .dropbtn{
     background-color: #6b4587;
   }
+
+  input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px auto;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: center;
+  }
 </style>
 </head>
 
@@ -258,14 +296,35 @@
     <h2>Delivering fresh produce from the Midland's green countryside since 2014<h2>
   </div> <!-- /title-box -->
 
-  <div class="navbar">
-    <ul>
-      <li><a href="#">temp</a></li>
-      <li><a href="#">temp</a></li>
-      <li><a href="#">temp</a></li>
-      <li><a href="#">temp</a></li>
-    </ul>
-  </div> <!-- /navbar -->
+  <div id="navbar"></div> <!-- /navbar -->
+
+  <script>
+    var productDetails = getProductDetails();
+    var basket = readBasket();
+    var totalNo = 0;
+    x = "";
+
+    // get number of items in basket if any
+    for (var product in productDetails) {
+      totalNo = totalNo + parseInt(basket[product],10);
+    }
+
+    x = x + "<ul>\n";
+    x = x + "<li><a href=\"../home.html\">Home</a></li>\n";
+    x = x + "<li><a href=\"../home.html\">Long Veg</a></li>\n";
+    x = x + "<li><a href=\"../home.html\">Round Veg</a></li>\n";
+
+    if (totalNo > 0) {
+      x = x + "<basket-link><li><a href=\"../basket.html\">Go to Basket (" + totalNo + ")</a></li></basket-link>\n";
+    }
+    else {
+      x = x + "<basket-link><li><a href=\"../basket.html\">Go to Basket (empty)</a></li></basket-link>\n";
+    }
+
+    x = x + "</ul>\n";
+
+    document.getElementById("navbar").innerHTML = x;
+  </script>
 
   <div id="item-info">
     <div id="image-block">
@@ -350,6 +409,7 @@
         for (i=1; i<10; i++){
           x = x + "<a href=\"../basket.html\" onclick=\"javascript:addToBasket('" + vegDetails["name"].toLowerCase() + "', " + i + ")\">" + i + "</a>\n"
         }
+        x = x + "<input type=\"text\" id=\"" + veg + "\" placeholder=\"10+\" maxlength=\"2\" name=\"" + veg + "\">\n";
         document.getElementById("dropdown-content").innerHTML = x;
 
         // script to generate description
@@ -367,19 +427,36 @@
             randArr.push(rn);
           }
         }
-        console.log(randArr);
         for (i=0; i<4; i++){
           var relatedVeg = Object.keys(productDetails)[randArr[i]];
-          console.log(relatedVeg);
           x = x + "<a href=\"" + productDetails[relatedVeg]["page"] + "\"><img src=\"../" + productDetails[relatedVeg]["images"][0] + "\"></a>\n";
         }
         document.getElementById("related-row").innerHTML = x;
+
+        // adds ability for user to enter custom amount of veg
+        document.getElementById(veg).addEventListener("keyup", function(event) {
+          val = document.getElementById(veg).value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              event.preventDefault();
+              addToBasket(veg, val);
+              window.location = "../basket.html";
+            }
+            else {
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
 
       </script>
 
     </div> <!-- /text-block -->
 
   </div> <!-- /item-info -->
+
+  <!-- secret button hello there -->
+ <button id="myBtn" style="visibility:hidden;" onclick="javascript:alert('Please enter a valid number between 0 and 99')">Button</button>
 
 </div> <!-- /container -->
 

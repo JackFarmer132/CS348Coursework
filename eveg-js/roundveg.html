@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>Home</title>
+<title>Round Vegetables</title>
 <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
 <script type="text/javascript" src="model.js"></script>
 <style>
@@ -223,9 +223,11 @@
       var productDetails = getProductDetails();
       var x = "";
       for (var product in productDetails) {
-        x = x + "<a style=\"display:block\" href=\"veg_pages/" + productDetails[product]["page"] + "\">";
-        x = x + "<div class=\"box\">\n<div class=\"image\">\n<img src=\"" + productDetails[product]["images"][0] + "\">\n</div>\n<div class=\"title\">\n<h1>" + productDetails[product]["name"] +"</h1>\n</div>\n<div class=\"price\">\n<h1>&pound" + productDetails[product]["price"] + " <b>(";
-        x = x + "&pound" + productDetails[product]["pricePerUnit"] + "/" + productDetails[product]["units"] + ")</b></h1>\n</div>\n</div>\n</a>\n";
+        if (productDetails[product]["shape"] == "round") {
+          x = x + "<a style=\"display:block\" href=\"veg_pages/" + productDetails[product]["page"] + "\">";
+          x = x + "<div class=\"box\">\n<div class=\"image\">\n<img src=\"" + productDetails[product]["images"][0] + "\">\n</div>\n<div class=\"title\">\n<h1>" + productDetails[product]["name"] +"</h1>\n</div>\n<div class=\"price\">\n<h1>&pound" + productDetails[product]["price"] + " <b>(";
+          x = x + "&pound" + productDetails[product]["pricePerUnit"] + "/" + productDetails[product]["units"] + ")</b></h1>\n</div>\n</div>\n</a>\n";
+        }
       }
       document.getElementById("shop-list").innerHTML = x;
     </script>

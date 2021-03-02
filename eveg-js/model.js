@@ -9,6 +9,8 @@ function getProductDetails() {
   productDetails["carrots"]["price"] = 4.95;
   productDetails["carrots"]["pricePerUnit"] = 0.99;
   productDetails["carrots"]["page"] = "carrots.html";
+  productDetails["carrots"]["shape"] = "long";
+
 
   productDetails["bananas"] = {};
   productDetails["bananas"]["images"] = ["img/bananas/banana1.jpg", "img/bananas/banana2.jpg", "img/bananas/banana3.jpg", "img/bananas/banana4.jpg", "img/bananas/banana5.jpg"];
@@ -19,6 +21,7 @@ function getProductDetails() {
   productDetails["bananas"]["price"] = 6.98;
   productDetails["bananas"]["pricePerUnit"] = 1.29;
   productDetails["bananas"]["page"] = "bananas.html";
+  productDetails["bananas"]["shape"] = "long";
 
   productDetails["coconut"] = {};
   productDetails["coconut"]["images"] = ["img/coconuts/coconut1.jpg", "img/coconuts/coconut2.jpg", "img/coconuts/coconut3.jpg", "img/coconuts/coconut4.jpg", "img/coconuts/coconut5.jpg"];
@@ -29,6 +32,7 @@ function getProductDetails() {
   productDetails["coconut"]["price"] = 5.98;
   productDetails["coconut"]["pricePerUnit"] = 2.99;
   productDetails["coconut"]["page"] = "coconut.html";
+  productDetails["coconut"]["shape"] = "round";
 
   productDetails["apples"] = {};
   productDetails["apples"]["images"] = ["img/apples/apple1.jpg", "img/apples/apple2.jpg", "img/apples/apple3.jpg", "img/apples/apple4.jpg", "img/apples/apple5.jpg"];
@@ -39,6 +43,7 @@ function getProductDetails() {
   productDetails["apples"]["price"] = 3.99;
   productDetails["apples"]["pricePerUnit"] = 1.49;
   productDetails["apples"]["page"] = "apples.html";
+  productDetails["apples"]["shape"] = "round";
 
   productDetails["cherries"] = {};
   productDetails["cherries"]["images"] = ["img/cherries/cherry1.jpg", "img/cherries/cherry2.jpg", "img/cherries/cherry3.jpg", "img/cherries/cherry4.jpg", "img/cherries/cherry5.jpg"];
@@ -49,6 +54,7 @@ function getProductDetails() {
   productDetails["cherries"]["price"] = 0.99;
   productDetails["cherries"]["pricePerUnit"] = 1.99;
   productDetails["cherries"]["page"] = "cherries.html";
+  productDetails["cherries"]["shape"] = "round";
 
   productDetails["tomatoes"] = {};
   productDetails["tomatoes"]["images"] = ["img/tomatoes/tomato1.jpg", "img/tomatoes/tomato2.jpg", "img/tomatoes/tomato3.jpg", "img/tomatoes/tomato4.jpg", "img/tomatoes/tomato5.jpg"];
@@ -59,6 +65,7 @@ function getProductDetails() {
   productDetails["tomatoes"]["price"] = 16.99;
   productDetails["tomatoes"]["pricePerUnit"] = 1.99;
   productDetails["tomatoes"]["page"] = "tomatoes.html";
+  productDetails["tomatoes"]["shape"] = "round";
 
   productDetails["potatoes"] = {};
   productDetails["potatoes"]["images"] = ["img/potatoes/potato1.jpg", "img/potatoes/potato2.jpg", "img/potatoes/potato3.jpg", "img/potatoes/potato4.jpg", "img/potatoes/potato5.jpg"];
@@ -69,6 +76,7 @@ function getProductDetails() {
   productDetails["potatoes"]["price"] = 8.61;
   productDetails["potatoes"]["pricePerUnit"] = 0.99;
   productDetails["potatoes"]["page"] = "potatoes.html";
+  productDetails["potatoes"]["shape"] = "round";
 
   productDetails["beans"] = {};
   productDetails["beans"]["images"] = ["img/beans/bean1.jpg", "img/beans/bean2.jpg", "img/beans/bean3.jpg", "img/beans/bean4.jpg", "img/beans/bean5.jpg"];
@@ -79,6 +87,7 @@ function getProductDetails() {
   productDetails["beans"]["price"] = 41.01;
   productDetails["beans"]["pricePerUnit"] = 1.29;
   productDetails["beans"]["page"] = "beans.html";
+  productDetails["beans"]["shape"] = "long";
 
   return productDetails;
 }

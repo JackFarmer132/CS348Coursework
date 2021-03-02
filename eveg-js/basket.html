@@ -4,6 +4,7 @@
 <head>
 <meta charset="utf-8">
 <title>Basket</title>
+<link rel="shortcut icon" type="image/png" href="img/icon.png"/>
 <script type="text/javascript" src="model.js"></script>
 <style>
 
@@ -258,7 +259,7 @@
 
   #dropdown-content a{
     color: black;
-    padding: 10px 50px;
+    padding: 5px 50px;
     font-weight: bold;
     text-decoration: none;
     display: block;
@@ -291,14 +292,12 @@
   #order{
     position: relative;
     width:31%;
-    height: 190px;
+    height: 281px;
     background: #fff;
     margin-top: 35px;
     margin-left: 3%;
     margin-right: 3%;
     margin-bottom: 20px;
-    /* box-sizing: border-box;
-    display: inline-block; */
     overflow: hidden;
   }
 
@@ -336,10 +335,32 @@
     position: relative;
     display: inline-block;
     width: 100%;
-    background: white;
+    background: #e3e3e3;
   }
 
   #order .orbut:hover .orderbtn{
+    background-color: #6b4587;
+  }
+
+  #order .newbtn{
+    background-color: #919191;
+    color:#e3e3e3;
+    padding: 25px 12px;
+    font-size: 26px;
+    cursor: pointer;
+    width: 100%;
+    text-align:center
+  }
+
+  #order .nbut{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    background: #e3e3e3;
+    border-top: solid 3px white;
+  }
+
+  #order .nbut:hover .newbtn{
     background-color: #6b4587;
   }
 
@@ -416,303 +437,305 @@
     x = "";
     x = x + "<ul>\n";
     x = x + "<li><a href=\"home.html\">Home</a></li>\n";
-    x = x + "<li><a href=\"home.html\">Long Veg</a></li>\n";
-    x = x + "<li><a href=\"home.html\">Round Veg</a></li>\n";
+    x = x + "<li><a href=\"longveg.html\">Long Veggies</a></li>\n";
+    x = x + "<li><a href=\"roundveg.html\">Round Veggies</a></li>\n";
     x = x + "</ul>\n";
 
     document.getElementById("navbar").innerHTML = x;
   </script>
 
-    <script>
-      var x = "";
-      var basket = readBasket();
-      var productDetails = getProductDetails();
-      var input;
-      var val;
-      var totalNo = 0;
+  <script>
+    var x = "";
+    var basket = readBasket();
+    var productDetails = getProductDetails();
+    var input;
+    var val;
+    var totalNo = 0;
 
-      // see if basket is empty
+    // see if basket is empty
+    for (var product in productDetails) {
+      totalNo = totalNo + parseInt(basket[product],10);
+    }
+
+    if (totalNo > 0) {
+      document.write("<div id=\"page\">\n</div>\n");
+
+      x = x + "<div id=\"item-list\"></div>\n";
+      x = x + "<div id=\"order\"></div>\n";
+      document.getElementById("page").innerHTML = x;
+      x = "";
+
       for (var product in productDetails) {
-        totalNo = totalNo + parseInt(basket[product],10);
+        if (basket[product] > 0) {
+          veg = productDetails[product];
+
+          x = x + "<div class=\"item-row\">\n";
+          x = x + "<img src=\"" + veg["images"][0] + "\">\n";
+          x = x + "<div id=\"text-block\">\n";
+          x = x + "<div class=\"veg-title\">\n";
+          x = x + "<a href=\"veg_pages/" + veg["page"] + "\">" + veg["name"] + " (" + basket[product] + ")</a>\n";
+          x = x + "</div>\n";
+          x = x + "<div class=\"veg-price\">\n";
+
+          var vegTotalPrice = (Math.round((veg["price"] * basket[product]) * 100) / 100).toFixed(2);
+
+          x = x + "&pound" + vegTotalPrice + "\n";
+          x = x + "</div>\n";
+          x = x + "<div class=\"veg-item-info\">Quantity:</div>\n";
+          x = x + "<div id=\"dropdown\">\n";
+          x = x + "<button class=\"dropbtn\">-</button>\n";
+          x = x + "<div id=\"dropdown-content\">\n";
+          x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 0)\" >0</a>\n";
+          x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 1)\" >1</a>\n";
+          x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 2)\" >2</a>\n";
+          x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 3)\" >3</a>\n";
+          x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 4)\" >4</a>\n";
+          x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 5)\" >5</a>\n";
+          x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 6)\" >6</a>\n";
+          x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 7)\" >7</a>\n";
+          x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 8)\" >8</a>\n";
+          x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 9)\" >9</a>\n";
+          x = x + "<input type=\"text\" id=\"" + product + "\" placeholder=\"10+\" maxlength=\"2\" name=\"" + product + "\">\n";
+          x = x + "</div>\n";
+          x = x + "</div>\n";
+          x = x + "<div class=\"bin\">\n";
+          x = x + "<button class=\"binbtn\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 0); history.go(0);\">Delete</button>\n";
+          x = x + "</div>\n";
+          x = x + "<div class=\"veg-dec\">\n";
+          x = x + veg["description"];
+          x = x + "</div>\n";
+          x = x + "</div>\n";
+          x = x + "</div>\n";
+        }
       }
 
-      if (totalNo > 0) {
-        document.write("<div id=\"page\">\n</div>\n");
+      // generate subtotal below rows
+      var totals = calculateTotals();
 
-        x = x + "<div id=\"item-list\"></div>\n";
-        x = x + "<div id=\"order\"></div>\n";
-        document.getElementById("page").innerHTML = x;
-        x = "";
+      x = x + "<div id=\"subtotal\">\n";
+      x = x + "Subtotal (" + totalNo + " items): &pound" + (Math.round(totals["total"] * 100) / 100).toFixed(2) + "\n";
+      x = x + "<br />\n";
+      x = x + "<b>Exc. VAT: &pound" + (Math.round(totals["totalnovat"] * 100) / 100).toFixed(2) + ", VAT: &pound" + (Math.round(totals["vat"] * 100) / 100).toFixed(2) + "</b>\n";
+      x = x + "</div>\n";
 
-        for (var product in productDetails) {
-          if (basket[product] > 0) {
-            veg = productDetails[product];
+      document.getElementById("item-list").innerHTML = x;
+      x = "";
 
-            x = x + "<div class=\"item-row\">\n";
-            x = x + "<img src=\"" + veg["images"][0] + "\">\n";
-            x = x + "<div id=\"text-block\">\n";
-            x = x + "<div class=\"veg-title\">\n";
-            x = x + "<a href=\"veg_pages/" + veg["page"] + "\">" + veg["name"] + " (" + basket[product] + ")</a>\n";
-            x = x + "</div>\n";
-            x = x + "<div class=\"veg-price\">\n";
+      // generate subtotal above checkout button
 
-            var vegTotalPrice = (Math.round((veg["price"] * basket[product]) * 100) / 100).toFixed(2);
+      x = x + "<div class=\"test\">\n";
+      x = x + "Subtotal (" + totalNo + " items) is:<br /><b>&pound" + (Math.round(totals["total"] * 100) / 100).toFixed(2) + "</b>\n";
+      x = x + "</div>\n";
+      x = x + "<div class=\"orbut\">\n";
+      x = x + "<a href=\"order.html\"><button class=\"orderbtn\">Proceed to Checkout</button></a>\n";
+      x = x + "</div>\n";
+      x = x + "<div class=\"nbut\">\n";
+      x = x + "<a href=\"home.html\"><button class=\"newbtn\">Continue Shopping</button></a>\n";
+      x = x + "</div>\n";
 
-            x = x + "&pound" + vegTotalPrice + "\n";
-            x = x + "</div>\n";
-            x = x + "<div class=\"veg-item-info\">Quantity:</div>\n";
-            x = x + "<div id=\"dropdown\">\n";
-            x = x + "<button class=\"dropbtn\">-</button>\n";
-            x = x + "<div id=\"dropdown-content\">\n";
-            x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 0)\" >0</a>\n";
-            x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 1)\" >1</a>\n";
-            x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 2)\" >2</a>\n";
-            x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 3)\" >3</a>\n";
-            x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 4)\" >4</a>\n";
-            x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 5)\" >5</a>\n";
-            x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 6)\" >6</a>\n";
-            x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 7)\" >7</a>\n";
-            x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 8)\" >8</a>\n";
-            x = x + "<a href=\"basket.html\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 9)\" >9</a>\n";
-            x = x + "<input type=\"text\" id=\"" + product + "\" placeholder=\"10+\" maxlength=\"2\" name=\"" + product + "\">\n";
-            x = x + "</div>\n";
-            x = x + "</div>\n";
-            x = x + "<div class=\"bin\">\n";
-            x = x + "<button class=\"binbtn\" onclick=\"javascript:changeProductQuantity('" + veg["name"].toLowerCase() + "', 0); history.go(0);\">Delete</button>\n";
-            x = x + "</div>\n";
-            x = x + "<div class=\"veg-dec\">\n";
-            x = x + veg["description"];
-            x = x + "</div>\n";
-            x = x + "</div>\n";
-            x = x + "</div>\n";
+      document.getElementById("order").innerHTML = x;
+
+      // carrot custom entry
+      if (basket["carrots"] > 0){
+        console.log("adding event listener for carrots");
+        document.getElementById("carrots").addEventListener("keyup", function(event) {
+          val = document.getElementById("carrots").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("carrots").value);
+              console.log("carrots");
+              event.preventDefault();
+              changeProductQuantity("carrots", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("carrots").value);
+              console.log("carrots");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
           }
-        }
-
-        // generate subtotal below rows
-        var totals = calculateTotals();
-
-        x = x + "<div id=\"subtotal\">\n";
-        x = x + "Subtotal (" + totalNo + " items): &pound" + (Math.round(totals["total"] * 100) / 100).toFixed(2) + "\n";
-        x = x + "<br />\n";
-        x = x + "<b>Exc. VAT: &pound" + (Math.round(totals["totalnovat"] * 100) / 100).toFixed(2) + ", VAT: &pound" + (Math.round(totals["vat"] * 100) / 100).toFixed(2) + "</b>\n";
-        x = x + "</div>\n";
-
-        document.getElementById("item-list").innerHTML = x;
-        x = "";
-
-        // generate subtotal above checkout button
-
-        x = x + "<div class=\"test\">\n";
-        x = x + "Subtotal (" + totalNo + " items) is:<br /><b>&pound" + (Math.round(totals["total"] * 100) / 100).toFixed(2) + "</b>\n";
-        x = x + "</div>\n";
-        x = x + "<div class=\"orbut\">\n";
-        x = x + "<a href=\"order.html\"><button class=\"orderbtn\">Proceed to Checkout</button></a>\n";
-        x = x + "</div>\n";
-        document.getElementById("order").innerHTML = x;
-
-        // carrot custom entry
-        if (basket["carrots"] > 0){
-          console.log("adding event listener for carrots");
-          document.getElementById("carrots").addEventListener("keyup", function(event) {
-            val = document.getElementById("carrots").value;
-            if (event.keyCode === 13) {
-              if (val === parseInt(val, 10).toString()){
-                console.log(document.getElementById("carrots").value);
-                console.log("carrots");
-                event.preventDefault();
-                changeProductQuantity("carrots", val);
-                location.reload();
-              }
-              else {
-                console.log(document.getElementById("carrots").value);
-                console.log("carrots");
-                event.preventDefault();
-                document.getElementById("myBtn").click();
-              }
-            }
-          });
-        }
-
-        // bananas custom entry
-        if (basket["bananas"] > 0){
-          console.log("adding event listener for bananas");
-          document.getElementById("bananas").addEventListener("keyup", function(event) {
-            val = document.getElementById("bananas").value;
-            if (event.keyCode === 13) {
-              if (val === parseInt(val, 10).toString()){
-                console.log(document.getElementById("bananas").value);
-                console.log("bananas");
-                event.preventDefault();
-                changeProductQuantity("bananas", val);
-                location.reload();
-              }
-              else {
-                console.log(document.getElementById("bananas").value);
-                console.log("bananas");
-                event.preventDefault();
-                document.getElementById("myBtn").click();
-              }
-            }
-          });
-        }
-
-        // coconut custom entry
-        if (basket["coconut"] > 0){
-          console.log("adding event listener for coconut");
-          document.getElementById("coconut").addEventListener("keyup", function(event) {
-            val = document.getElementById("coconut").value;
-            if (event.keyCode === 13) {
-              if (val === parseInt(val, 10).toString()){
-                console.log(document.getElementById("coconut").value);
-                console.log("coconut");
-                event.preventDefault();
-                changeProductQuantity("coconut", val);
-                location.reload();
-              }
-              else {
-                console.log(document.getElementById("coconut").value);
-                console.log("coconut");
-                event.preventDefault();
-                document.getElementById("myBtn").click();
-              }
-            }
-          });
-        }
-
-        // apples custom entry
-        if (basket["apples"] > 0){
-          console.log("adding event listener for apples");
-          document.getElementById("apples").addEventListener("keyup", function(event) {
-            val = document.getElementById("apples").value;
-            if (event.keyCode === 13) {
-              if (val === parseInt(val, 10).toString()){
-                console.log(document.getElementById("apples").value);
-                console.log("apples");
-                event.preventDefault();
-                changeProductQuantity("apples", val);
-                location.reload();
-              }
-              else {
-                console.log(document.getElementById("apples").value);
-                console.log("apples");
-                event.preventDefault();
-                document.getElementById("myBtn").click();
-              }
-            }
-          });
-        }
-
-        // cherries custom entry
-        if (basket["cherries"] > 0){
-          console.log("adding event listener for cherries");
-          document.getElementById("cherries").addEventListener("keyup", function(event) {
-            val = document.getElementById("cherries").value;
-            if (event.keyCode === 13) {
-              if (val === parseInt(val, 10).toString()){
-                console.log(document.getElementById("cherries").value);
-                console.log("cherries");
-                event.preventDefault();
-                changeProductQuantity("cherries", val);
-                location.reload();
-              }
-              else {
-                console.log(document.getElementById("cherries").value);
-                console.log("cherries");
-                event.preventDefault();
-                document.getElementById("myBtn").click();
-              }
-            }
-          });
-        }
-
-        // tomatoes custom entry
-        if (basket["tomatoes"] > 0){
-          console.log("adding event listener for tomatoes");
-          document.getElementById("tomatoes").addEventListener("keyup", function(event) {
-            val = document.getElementById("tomatoes").value;
-            if (event.keyCode === 13) {
-              if (val === parseInt(val, 10).toString()){
-                console.log(document.getElementById("tomatoes").value);
-                console.log("tomatoes");
-                event.preventDefault();
-                changeProductQuantity("tomatoes", val);
-                location.reload();
-              }
-              else {
-                console.log(document.getElementById("tomatoes").value);
-                console.log("tomatoes");
-                event.preventDefault();
-                document.getElementById("myBtn").click();
-              }
-            }
-          });
-        }
-
-        // potatoes custom entry
-        if (basket["potatoes"] > 0){
-          console.log("adding event listener for potatoes");
-          document.getElementById("potatoes").addEventListener("keyup", function(event) {
-            val = document.getElementById("potatoes").value;
-            if (event.keyCode === 13) {
-              if (val === parseInt(val, 10).toString()){
-                console.log(document.getElementById("potatoes").value);
-                console.log("potatoes");
-                event.preventDefault();
-                changeProductQuantity("potatoes", val);
-                location.reload();
-              }
-              else {
-                console.log(document.getElementById("potatoes").value);
-                console.log("potatoes");
-                event.preventDefault();
-                document.getElementById("myBtn").click();
-              }
-            }
-          });
-        }
-
-        // beans custom entry
-        if (basket["beans"] > 0){
-          console.log("adding event listener for beans");
-          document.getElementById("beans").addEventListener("keyup", function(event) {
-            val = document.getElementById("beans").value;
-            if (event.keyCode === 13) {
-              if (val === parseInt(val, 10).toString()){
-                console.log(document.getElementById("beans").value);
-                console.log("beans");
-                event.preventDefault();
-                changeProductQuantity("beans", val);
-                location.reload();
-              }
-              else {
-                console.log(document.getElementById("beans").value);
-                console.log("beans");
-                event.preventDefault();
-                document.getElementById("myBtn").click();
-              }
-            }
-          });
-        }
+        });
       }
-      else {
-        document.write("<div id=\"empty\">\n</div>\n");
 
-        x = x + "<div class=\"text-block\">\n";
-        x = x + "<h1>Your Basket is Empty!</h1>\n";
-        x = x + "<h2>Don't worry, we have a huge selection of vegetables we know you'll love!</h2>\n";
-        x = x + "</div>\n";
-        x = x + "<div class=\"shbut\">\n";
-        x = x + "<a href=\"home.html\"><button class=\"shopbtn\">To the Shop!</button></a>\n";
-        x = x + "</div>\n";
-
-        document.getElementById("empty").innerHTML = x;
+      // bananas custom entry
+      if (basket["bananas"] > 0){
+        console.log("adding event listener for bananas");
+        document.getElementById("bananas").addEventListener("keyup", function(event) {
+          val = document.getElementById("bananas").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("bananas").value);
+              console.log("bananas");
+              event.preventDefault();
+              changeProductQuantity("bananas", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("bananas").value);
+              console.log("bananas");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
       }
-    </script>
 
-     <!-- secret button hello there -->
-    <button id="myBtn" style="visibility:hidden;" onclick="javascript:alert('Please enter a valid number between 0 and 99')">Button</button>
+      // coconut custom entry
+      if (basket["coconut"] > 0){
+        console.log("adding event listener for coconut");
+        document.getElementById("coconut").addEventListener("keyup", function(event) {
+          val = document.getElementById("coconut").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("coconut").value);
+              console.log("coconut");
+              event.preventDefault();
+              changeProductQuantity("coconut", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("coconut").value);
+              console.log("coconut");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
 
-  </div> <!-- /page -->
+      // apples custom entry
+      if (basket["apples"] > 0){
+        console.log("adding event listener for apples");
+        document.getElementById("apples").addEventListener("keyup", function(event) {
+          val = document.getElementById("apples").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("apples").value);
+              console.log("apples");
+              event.preventDefault();
+              changeProductQuantity("apples", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("apples").value);
+              console.log("apples");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+
+      // cherries custom entry
+      if (basket["cherries"] > 0){
+        console.log("adding event listener for cherries");
+        document.getElementById("cherries").addEventListener("keyup", function(event) {
+          val = document.getElementById("cherries").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("cherries").value);
+              console.log("cherries");
+              event.preventDefault();
+              changeProductQuantity("cherries", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("cherries").value);
+              console.log("cherries");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+
+      // tomatoes custom entry
+      if (basket["tomatoes"] > 0){
+        console.log("adding event listener for tomatoes");
+        document.getElementById("tomatoes").addEventListener("keyup", function(event) {
+          val = document.getElementById("tomatoes").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("tomatoes").value);
+              console.log("tomatoes");
+              event.preventDefault();
+              changeProductQuantity("tomatoes", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("tomatoes").value);
+              console.log("tomatoes");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+
+      // potatoes custom entry
+      if (basket["potatoes"] > 0){
+        console.log("adding event listener for potatoes");
+        document.getElementById("potatoes").addEventListener("keyup", function(event) {
+          val = document.getElementById("potatoes").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("potatoes").value);
+              console.log("potatoes");
+              event.preventDefault();
+              changeProductQuantity("potatoes", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("potatoes").value);
+              console.log("potatoes");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+
+      // beans custom entry
+      if (basket["beans"] > 0){
+        console.log("adding event listener for beans");
+        document.getElementById("beans").addEventListener("keyup", function(event) {
+          val = document.getElementById("beans").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("beans").value);
+              console.log("beans");
+              event.preventDefault();
+              changeProductQuantity("beans", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("beans").value);
+              console.log("beans");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+    }
+    else {
+      document.write("<div id=\"empty\">\n</div>\n");
+
+      x = x + "<div class=\"text-block\">\n";
+      x = x + "<h1>Your Basket is Empty!</h1>\n";
+      x = x + "<h2>Don't worry, we have a huge selection of vegetables we know you'll love!</h2>\n";
+      x = x + "</div>\n";
+      x = x + "<div class=\"shbut\">\n";
+      x = x + "<a href=\"home.html\"><button class=\"shopbtn\">To the Shop!</button></a>\n";
+      x = x + "</div>\n";
+
+      document.getElementById("empty").innerHTML = x;
+    }
+  </script>
+
+   <!-- secret button hello there -->
+  <button id="myBtn" style="visibility:hidden;" onclick="javascript:alert('Please enter a valid number between 0 and 99')">Button</button>
 
 </div> <!-- /container -->
 

@@ -121,9 +121,9 @@ function calculateTotals() {
   }
 
   totals = {};
-  totals["total"] = total.toString();
-  totals["vat"] = (total - total / 1.175).toString();
-  totals["totalnovat"] = (total / 1.175).toString();
+  totals["total"] = total;
+  totals["vat"] = (total - total / 1.175);
+  totals["totalnovat"] = (total / 1.175);
 
   return totals;
 }

@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>Home</title>
+<title>Order Complete!</title>
 <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
 <script type="text/javascript" src="model.js"></script>
 <style>
@@ -20,6 +20,8 @@
   body{
     font-family: Arial, Helvetica, sans-serif;
     margin:0;
+    background-color: #e3e3e3;
+    color: #363636;
   }
 
   .container{
@@ -31,6 +33,7 @@
     background-color: #4f1778;
     color:#e3e3e3;
     border: solid 5px #e3e3e3;
+    min-width: 800px;
   }
 
   .title-box h1{
@@ -52,6 +55,7 @@
     border-left: solid 5px #e3e3e3;
     border-right: solid 5px #e3e3e3;
     border-bottom: solid 5px #e3e3e3;
+    min-width: 800px;
   }
 
   #navbar basket-link{
@@ -103,6 +107,84 @@
     color: white;
   }
 
+  .line{
+    width: 90%;
+    margin: 15px auto;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    display:block;
+  }
+
+  #block{
+    width: 60%;
+    background: white;
+    margin-top: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    padding-bottom: 15px;
+    min-width: 800px;
+  }
+
+  #block h1{
+    font-size: 30px;
+    text-align: center;
+    padding-top: 15px;
+  }
+
+  #block h2{
+    font-size: 20px;
+    text-align: center;
+    padding-top: 15px;
+  }
+
+  .printbtn{
+    background-color: #919191;
+    color:#e3e3e3;
+    padding: 10px 0;
+    font-size: 20px;
+    cursor: pointer;
+    width: 100%;
+    text-align:center
+  }
+
+  .pbut{
+    position: relative;
+    display: inline block;
+    width: 240px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: solid 1px #e3e3e3;
+
+  }
+
+  .pbut:hover .printbtn{
+    background-color: #6b4587;
+  }
+
+  .btn{
+    background-color: #919191;
+    color:#e3e3e3;
+    padding: 25px 12px;
+    font-size: 30px;
+    cursor: pointer;
+    width: 100%;
+    text-align:center
+  }
+
+  .but{
+    position: relative;
+    display: inline block;
+    width: 400px;
+    margin: 0 auto;
+    border: solid 1px #e3e3e3;
+    margin-top: 40px;
+  }
+
+  .but:hover .btn{
+    background-color: #6b4587;
+  }
+
 </style>
 </head>
 
@@ -143,37 +225,25 @@
     x = x + "</ul>\n";
 
     document.getElementById("navbar").innerHTML = x;
+
+    // // done with order so wipe the basket
+    // createEmptyBasket();
   </script>
 
-  <script>
+  <div id="block">
+    <h1>Your Order has been Placed!</h1>
+    <h2> Your eVeg will be with you soon!</h2>
 
-    var name = sessionStorage.getItem('name');
-    var number = sessionStorage.getItem('number');
-    var postcode = sessionStorage.getItem('postcode');
-    var addressone = sessionStorage.getItem('addressone');
-    var addresstwo = sessionStorage.getItem('addresstwo');
-    var town = sessionStorage.getItem('town');
-    var county = sessionStorage.getItem('county');
-    var cardtype = sessionStorage.getItem('cardtype');
-    var cardno = sessionStorage.getItem('cardno');
-    var cardholder = sessionStorage.getItem('cardholder');
-    var expirymonth = sessionStorage.getItem('expirymonth');
-    var expiryyear = sessionStorage.getItem('expiryyear');
+    <div class="pbut">
+      <a href="#"><button class="printbtn">Download Invoice</button></a>
+    </div>
 
-    console.log(name);
-    console.log(number);
-    console.log(postcode);
-    console.log(addressone);
-    console.log(addresstwo);
-    console.log(town);
-    console.log(county);
-    console.log(cardtype);
-    console.log(cardno);
-    console.log(cardholder);
-    console.log(expirymonth);
-    console.log(expiryyear);
+  </div>
 
-  </script>
+  <div class="but">
+    <a href="home.html"><button class="btn">Continue Shopping</button></a>
+  </div>
+
 
 </body>
 

@@ -1,0 +1,39 @@
+---------------------------------------------------------------------------------
+|                                                                               |
+|                                   INVOICE                                     |
+|                                                                               |
+---------------------------------------------------------------------------------
+
+                              eVeg Company Limited
+
+Business Address: 218 Imaginary Drive           Contacts: eVeg@notarealsite.co.uk
+                  London                                  07232 131242
+                  LN8 9DN
+
+---------------------------------------------------------------------------------
+
+Order Date:
+Order Reference Number:
+
+Full Name:
+Phone Number:
+
+Postcode:
+Address Line 1:
+Address Line 2:
+Town/City:
+County:
+
+Card Type:
+Card Holder:
+Card Number:
+Card Expiry Date:
+
+---------------------------------------------------------------------------------
+
+Carrots (10) ..... &100
+Shipping: Free
+
+Total
+Exc. VAT:
+VAT:

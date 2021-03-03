@@ -138,7 +138,7 @@
     padding-top: 15px;
   }
 
-  .printbtn{
+  #printbtn{
     background-color: #919191;
     color:#e3e3e3;
     padding: 10px 0;
@@ -148,7 +148,7 @@
     text-align:center
   }
 
-  .pbut{
+  #pbut{
     position: relative;
     display: inline block;
     width: 240px;
@@ -158,7 +158,7 @@
 
   }
 
-  .pbut:hover .printbtn{
+  #pbut:hover #printbtn{
     background-color: #6b4587;
   }
 
@@ -199,7 +199,25 @@
 
   <div id="navbar"></div> <!-- /navbar -->
 
+  <div id="block">
+    <h1>Your Order has been Placed!</h1>
+    <h2> Your eVeg will be with you soon!</h2>
+
+    <div id="pbut">
+      <a href="#"><button id="printbtn">Download Invoice</button></a>
+    </div>
+
+  </div>
+
+  <div class="but">
+    <a href="home.html"><button class="btn">Continue Shopping</button></a>
+  </div>
+
   <script>
+
+    // done with order so wipe the basket
+    createEmptyBasket();
+
     var productDetails = getProductDetails();
     var basket = readBasket();
     var totalNo = 0;
@@ -226,23 +244,124 @@
 
     document.getElementById("navbar").innerHTML = x;
 
-    // // done with order so wipe the basket
-    // createEmptyBasket();
+    function download(filename, text) {
+      var element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+      element.setAttribute('download', filename);
+
+      element.style.display = 'none';
+      document.body.appendChild(element);
+
+      element.click();
+
+      document.body.removeChild(element);
+    }
+
+    document.getElementById("printbtn").addEventListener("click", function(){
+        // Generate download of hello.txt file with some content
+        console.log("clicked");
+        var text = "";
+        var filename = "invoice.txt";
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        today = mm + '/' + dd + '/' + yyyy;
+
+        // build first part of text file
+        text = text + "---------------------------------------------------------------------------------\n";
+        text = text + "|                                                                               |\n";
+        text = text + "|                                   INVOICE                                     |\n";
+        text = text + "|                                                                               |\n";
+        text = text + "---------------------------------------------------------------------------------\n";
+        text = text + "\n";
+        text = text + "                              eVeg Company Limited\n";
+        text = text + "\n";
+        text = text + "Business Address: 218 Imaginary Drive           Contacts: eVeg@notarealsite.co.uk\n";
+        text = text + "                  London                                  07232 131242\n";
+        text = text + "                  LN8 9DN\n";
+        text = text + "\n";
+        text = text + "---------------------------------------------------------------------------------\n";
+        text = text + "\n";
+        text = text + "Order Date: " + today + "\n";
+        text = text + "Order Reference Number " + Math.floor(Math.random() * Math.floor(10000)) + "\n";
+        text = text + "\n";
+
+        var name = sessionStorage.getItem('name');
+        var number = sessionStorage.getItem('number');
+        var postcode = sessionStorage.getItem('postcode');
+        var addressone = sessionStorage.getItem('addressone');
+        var addresstwo = sessionStorage.getItem('addresstwo');
+        var town = sessionStorage.getItem('town');
+        var county = sessionStorage.getItem('county');
+        var cardtype = sessionStorage.getItem('cardtype');
+        var cardholder = sessionStorage.getItem('cardholder');
+        var cardno = sessionStorage.getItem('cardno');
+        var expirymonth = sessionStorage.getItem('expirymonth');
+        var expiryyear = sessionStorage.getItem('expiryyear');
+
+        text = text + "Full Name " + name + "\n";
+        text = text + "Phone Number: " + number + "\n";
+        text = text + "\n";
+        text = text + "Postcode: " + postcode + "\n";
+        text = text + "Address Line 1: " + addressone + "\n";
+        text = text + "Address Line 2: " + addresstwo + "\n";
+        text = text + "Town/City: " + town + "\n";
+        text = text + "County: " + county + "\n";
+        text = text + "\n";
+        text = text + "Card Type: " + cardtype + "\n";
+        text = text + "Card Holder: " + cardholder + "\n";
+        text = text + "Card Number: " + cardno + "\n";
+        text = text + "Card Expiry Date: " + expirymonth + "/" + expiryyear + "\n";
+        text = text + "\n";
+        text = text + "---------------------------------------------------------------------------------\n";
+        text = text + "\n";
+
+        var memBasket = sessionStorage.getItem('memBasket');
+
+        var tempVal = "";
+        var retrievedBasket = [];
+
+        for (var l in memBasket){
+          if (memBasket[l] == ","){
+            retrievedBasket.push(tempVal);
+            tempVal = "";
+          }
+          else {
+            tempVal += memBasket[l];
+          }
+        }
+        // adds last element
+        retrievedBasket.push(tempVal);
+
+        console.log(retrievedBasket);
+        console.log(memBasket);
+
+        for (var i = 0; i <= retrievedBasket.length; i += 3){
+          if (retrievedBasket.length == (i+4)){
+            text = text + "\n";
+            text = text + "Shipping Fee: ..... Free\n";
+            text = text + "---------------------------------------------------------------------------------\n";
+            text = text + "Total Value(" + retrievedBasket[i] + "): ..... \xA3" + retrievedBasket[i+1] + "\n";
+            text = text + "Exc. VAT: ..... \xA3" + retrievedBasket[i+2] + "\n";
+            text = text + "VAT: ..... \xA3" + retrievedBasket[i+3] + "\n";
+            console.log("total amount is " + retrievedBasket[i]);
+            console.log("total price is " + retrievedBasket[i+1]);
+            console.log("exc vat is " + retrievedBasket[i+2]);
+            console.log("vat is " + retrievedBasket[i+3]);
+            break;
+          }
+          else {
+            text = text + retrievedBasket[i] + "(" + retrievedBasket[i+1] + ") ..... \xA3" + retrievedBasket[i+2] + "\n";
+            console.log("name is " + retrievedBasket[i]);
+            console.log("amount is " + retrievedBasket[i+1]);
+            console.log("cost is " + retrievedBasket[i+2]);
+          }
+        }
+        download(filename, text);
+    }, false);
   </script>
-
-  <div id="block">
-    <h1>Your Order has been Placed!</h1>
-    <h2> Your eVeg will be with you soon!</h2>
-
-    <div class="pbut">
-      <a href="#"><button class="printbtn">Download Invoice</button></a>
-    </div>
-
-  </div>
-
-  <div class="but">
-    <a href="home.html"><button class="btn">Continue Shopping</button></a>
-  </div>
 
 
 </body>

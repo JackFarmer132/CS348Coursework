@@ -192,8 +192,8 @@
     x = "";
     x = x + "<ul>\n";
     x = x + "<li><a href=\"home.html\">Home</a></li>\n";
-    x = x + "<li><a href=\"longveg.html\">Long Veggies</a></li>\n";
-    x = x + "<li><a href=\"roundveg.html\">Round Veggies</a></li>\n";
+    x = x + "<li><a href=\"fruits.html\">Fruits</a></li>\n";
+    x = x + "<li><a href=\"vegetables.html\">Vegetables</a></li>\n";
     x = x + "</ul>\n";
     document.getElementById("navbar").innerHTML = x;
   </script>
@@ -258,7 +258,7 @@
       <a href="javascript:history.back()"><button class="btn">Change Details</button></a>
     </div>
     <div class="but">
-      <a href="finished.html"><button class="btn">Complete Order</button></a>
+      <a href="finished.html" onclick="createEmptyBasket()"><button class="btn">Complete Order</button></a>
     </div>
   </div>
 

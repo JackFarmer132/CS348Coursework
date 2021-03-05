@@ -421,6 +421,29 @@
     background-color: #6b4587;
   }
 
+  .clearbtn{
+    background-color: #919191;
+    color:#e3e3e3;
+    padding:12px 12px;
+    margin-left: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+
+  .cbut{
+    position: relative;
+    display: inline-block;
+    width: 150px;
+    float: left;
+    margin-top: 15px;
+    margin-left: 1%;
+  }
+
+  .cbut:hover .clearbtn{
+    background-color: #6b4587;
+  }
+
 </style>
 </head>
 
@@ -440,8 +463,8 @@
     x = "";
     x = x + "<ul>\n";
     x = x + "<li><a href=\"home.html\">Home</a></li>\n";
-    x = x + "<li><a href=\"longveg.html\">Long Veggies</a></li>\n";
-    x = x + "<li><a href=\"roundveg.html\">Round Veggies</a></li>\n";
+    x = x + "<li><a href=\"fruits.html\">Fruits</a></li>\n";
+    x = x + "<li><a href=\"vegetables.html\">Vegetables</a></li>\n";
     x = x + "</ul>\n";
 
     document.getElementById("navbar").innerHTML = x;
@@ -514,7 +537,9 @@
 
       // generate subtotal below rows
       var totals = calculateTotals();
-
+      x = x + "<div class=\"cbut\">\n";
+      x = x + "<a href=\"basket.html\" onclick=\"createEmptyBasket()\"><button class=\"clearbtn\">Clear Basket</button></a>\n";
+      x = x + "</div>\n";
       x = x + "<div id=\"subtotal\">\n";
       x = x + "Subtotal (" + totalNo + " items): &pound" + (Math.round(totals["total"] * 100) / 100).toFixed(2) + "\n";
       x = x + "<br />\n";

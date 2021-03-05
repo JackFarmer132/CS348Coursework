@@ -8,8 +8,7 @@ function getProductDetails() {
   productDetails["carrots"]["units"] = "kg";
   productDetails["carrots"]["price"] = 4.95;
   productDetails["carrots"]["pricePerUnit"] = 0.99;
-  productDetails["carrots"]["page"] = "carrots.html";
-  productDetails["carrots"]["shape"] = "long";
+  productDetails["carrots"]["type"] = "veg";
 
 
   productDetails["bananas"] = {};
@@ -20,8 +19,7 @@ function getProductDetails() {
   productDetails["bananas"]["units"] = "500g";
   productDetails["bananas"]["price"] = 6.98;
   productDetails["bananas"]["pricePerUnit"] = 1.29;
-  productDetails["bananas"]["page"] = "bananas.html";
-  productDetails["bananas"]["shape"] = "long";
+  productDetails["bananas"]["type"] = "fruit";
 
   productDetails["coconut"] = {};
   productDetails["coconut"]["images"] = ["img/coconuts/coconut1.jpg", "img/coconuts/coconut2.jpg", "img/coconuts/coconut3.jpg", "img/coconuts/coconut4.jpg", "img/coconuts/coconut5.jpg"];
@@ -31,8 +29,7 @@ function getProductDetails() {
   productDetails["coconut"]["units"] = "unit";
   productDetails["coconut"]["price"] = 5.98;
   productDetails["coconut"]["pricePerUnit"] = 2.99;
-  productDetails["coconut"]["page"] = "coconut.html";
-  productDetails["coconut"]["shape"] = "round";
+  productDetails["coconut"]["type"] = "fruit";
 
   productDetails["apples"] = {};
   productDetails["apples"]["images"] = ["img/apples/apple1.jpg", "img/apples/apple2.jpg", "img/apples/apple3.jpg", "img/apples/apple4.jpg", "img/apples/apple5.jpg"];
@@ -42,8 +39,7 @@ function getProductDetails() {
   productDetails["apples"]["units"] = "kg";
   productDetails["apples"]["price"] = 3.99;
   productDetails["apples"]["pricePerUnit"] = 1.49;
-  productDetails["apples"]["page"] = "apples.html";
-  productDetails["apples"]["shape"] = "round";
+  productDetails["apples"]["type"] = "fruit";
 
   productDetails["cherries"] = {};
   productDetails["cherries"]["images"] = ["img/cherries/cherry1.jpg", "img/cherries/cherry2.jpg", "img/cherries/cherry3.jpg", "img/cherries/cherry4.jpg", "img/cherries/cherry5.jpg"];
@@ -53,8 +49,7 @@ function getProductDetails() {
   productDetails["cherries"]["units"] = "500g";
   productDetails["cherries"]["price"] = 0.99;
   productDetails["cherries"]["pricePerUnit"] = 1.99;
-  productDetails["cherries"]["page"] = "cherries.html";
-  productDetails["cherries"]["shape"] = "round";
+  productDetails["cherries"]["type"] = "fruit";
 
   productDetails["tomatoes"] = {};
   productDetails["tomatoes"]["images"] = ["img/tomatoes/tomato1.jpg", "img/tomatoes/tomato2.jpg", "img/tomatoes/tomato3.jpg", "img/tomatoes/tomato4.jpg", "img/tomatoes/tomato5.jpg"];
@@ -64,19 +59,17 @@ function getProductDetails() {
   productDetails["tomatoes"]["units"] = "500g";
   productDetails["tomatoes"]["price"] = 16.99;
   productDetails["tomatoes"]["pricePerUnit"] = 1.99;
-  productDetails["tomatoes"]["page"] = "tomatoes.html";
-  productDetails["tomatoes"]["shape"] = "round";
+  productDetails["tomatoes"]["type"] = "fruit";
 
   productDetails["potatoes"] = {};
   productDetails["potatoes"]["images"] = ["img/potatoes/potato1.jpg", "img/potatoes/potato2.jpg", "img/potatoes/potato3.jpg", "img/potatoes/potato4.jpg", "img/potatoes/potato5.jpg"];
   productDetails["potatoes"]["page"] = "potatoes.html";
   productDetails["potatoes"]["name"] = "Potatoes";
-  productDetails["potatoes"]["description"] = "The potato is native to the Peruvian-Bolivian Andes and is one of the world’s main food crops. Potatoes are frequently served whole or mashed as a cooked vegetable and are also ground into potato flour, used in baking and as a thickener for sauces. The tubers are highly digestible and supply vitamin C, protein, thiamin, and niacin.";
+  productDetails["potatoes"]["description"] = "The potato is native to the Peruvian-Bolivian Andes and is one of the worlds main food crops. Potatoes are frequently served whole or mashed as a cooked vegetable and are also ground into potato flour, used in baking and as a thickener for sauces. The tubers are highly digestible and supply vitamin C, protein, thiamin, and niacin.";
   productDetails["potatoes"]["units"] = "kg";
   productDetails["potatoes"]["price"] = 8.61;
   productDetails["potatoes"]["pricePerUnit"] = 0.99;
-  productDetails["potatoes"]["page"] = "potatoes.html";
-  productDetails["potatoes"]["shape"] = "round";
+  productDetails["potatoes"]["type"] = "veg";
 
   productDetails["beans"] = {};
   productDetails["beans"]["images"] = ["img/beans/bean1.jpg", "img/beans/bean2.jpg", "img/beans/bean3.jpg", "img/beans/bean4.jpg", "img/beans/bean5.jpg"];
@@ -84,10 +77,49 @@ function getProductDetails() {
   productDetails["beans"]["name"] = "Beans";
   productDetails["beans"]["description"] = "Green beans are the unripe, young fruit of various cultivars of the common bean. Immature or young pods of the runner bean, yardlong bean, and hyacinth bean are used in a similar way. Green beans are known by many common names, including French beans, string beans, snap beans, snaps, haricot vert, or just plain 'beans'";
   productDetails["beans"]["units"] = "kg";
-  productDetails["beans"]["price"] = 41.01;
+  productDetails["beans"]["price"] = 41.11;
   productDetails["beans"]["pricePerUnit"] = 1.29;
-  productDetails["beans"]["page"] = "beans.html";
-  productDetails["beans"]["shape"] = "long";
+  productDetails["beans"]["type"] = "veg";
+
+  productDetails["strawberry"] = {};
+  productDetails["strawberry"]["images"] = ["img/strawberries/strawberry1.jpg", "img/strawberries/strawberry2.jpg", "img/strawberries/strawberry3.jpg", "img/strawberries/strawberry4.jpg", "img/strawberries/strawberry5.jpg"];
+  productDetails["strawberry"]["page"] = "strawberries.html";
+  productDetails["strawberry"]["name"] = "Strawberry";
+  productDetails["strawberry"]["description"] = "A strawberry is both a low-growing, flowering plant and also the name of the fruit that it produces. Strawberries are soft, sweet, bright red berries. They're also delicious. Strawberries have tiny edible seeds, which grow all over their surface. When ripe, strawberries smell wonderful and taste even better. You can make jam, pie, strawberry shortcake, and more with strawberries.";
+  productDetails["strawberry"]["units"] = "unit";
+  productDetails["strawberry"]["price"] = 2.22;
+  productDetails["strawberry"]["pricePerUnit"] = 1.25;
+  productDetails["strawberry"]["type"] = "fruit";
+
+  productDetails["broccoli"] = {};
+  productDetails["broccoli"]["images"] = ["img/broccoli/broccoli1.jpg", "img/broccoli/broccoli2.jpg", "img/broccoli/broccoli3.jpg", "img/broccoli/broccoli4.jpg", "img/broccoli/broccoli5.jpg"];
+  productDetails["broccoli"]["page"] = "broccoli.html";
+  productDetails["broccoli"]["name"] = "Broccoli";
+  productDetails["broccoli"]["description"] = "Broccoli is an edible green plant in the cabbage family whose large flowering head, stalk and small associated leaves are eaten as a vegetable. Broccoli has large flower heads, usually dark green in color, arranged in a tree-like structure branching out from a thick stalk which is usually light green. It is eaten either raw or cooked.";
+  productDetails["broccoli"]["units"] = "unit";
+  productDetails["broccoli"]["price"] = 2.62;
+  productDetails["broccoli"]["pricePerUnit"] = 0.44;
+  productDetails["broccoli"]["type"] = "veg";
+
+  productDetails["oranges"] = {};
+  productDetails["oranges"]["images"] = ["img/oranges/orange1.jpg", "img/oranges/orange2.jpg", "img/oranges/orange3.jpg", "img/oranges/orange4.jpg", "img/oranges/orange5.jpg"];
+  productDetails["oranges"]["page"] = "oranges.html";
+  productDetails["oranges"]["name"] = "Oranges";
+  productDetails["oranges"]["description"] = "An orange is a type of citrus fruit that people often eat. Oranges are a very good source of vitamin C. Orange juice is an important part of many people's breakfast. The 'sweet orange', which is the kind that are most often eaten today, grew first in South and East Asia but now grows in lots of parts of the world. Oranges are round orange-coloured fruit that grow on a tree which can reach 10 metres (33 ft) high. Orange trees have dark green shiny leaves and small white flowers with five petals. The flowers smell very sweet which attracts many bees.";
+  productDetails["oranges"]["units"] = "unit";
+  productDetails["oranges"]["price"] = 5.43;
+  productDetails["oranges"]["pricePerUnit"] = 2.99;
+  productDetails["oranges"]["type"] = "fruit";
+
+  productDetails["grapes"] = {};
+  productDetails["grapes"]["images"] = ["img/grapes/grapes1.jpg", "img/grapes/grapes2.jpg", "img/grapes/grapes3.jpg", "img/grapes/grapes4.jpg", "img/grapes/grapes5.jpg"];
+  productDetails["grapes"]["page"] = "grapes.html";
+  productDetails["grapes"]["name"] = "Grapes";
+  productDetails["grapes"]["description"] = "A grape is a fruit, botanically a berry, of the deciduous woody vines of a flowering plant. Grapes can be eaten fresh as table grapes or they can be used for making wine, jam, grape juice, jelly, grape seed extract, raisins, vinegar, and grape seed oil. Grapes are a non-climacteric type of fruit, generally occurring in clusters.";
+  productDetails["grapes"]["units"] = "kg";
+  productDetails["grapes"]["price"] = 0.99;
+  productDetails["grapes"]["pricePerUnit"] = 30.45;
+  productDetails["grapes"]["type"] = "fruit";
 
   return productDetails;
 }

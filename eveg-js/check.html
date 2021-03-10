@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>Home</title>
+<title>Comfirm Details</title>
 <link rel="shortcut icon" type="image/png" href="img/icon.png"/>
 <script type="text/javascript" src="model.js"></script>
 <style>
@@ -140,19 +140,18 @@
   }
 
   #button-row{
-    background: red;
     width: 65%;
     max-width: 650px;
     margin-left: auto;
-    margin-right: auto;#
+    margin-right: auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
   }
 
   .btn{
-    background-color: #919191;
-    color:#e3e3e3;
+    background-color: #d12d21;
+    color: white;
     padding: 25px 12px;
     font-size: 30px;
     cursor: pointer;
@@ -171,7 +170,31 @@
   }
 
   .but:hover .btn{
-    background-color: #6b4587;
+    background-color: #fc695d;
+  }
+
+  .btn2{
+    background-color: #39a4e6;
+    color:white;
+    padding: 25px 12px;
+    font-size: 30px;
+    cursor: pointer;
+    width: 100%;
+    text-align:center
+  }
+
+  .but2{
+    position: relative;
+    display: inline block;
+    width: 49%;
+    float: left;
+    margin: 0 auto;
+    border: solid 1px #e3e3e3;
+
+  }
+
+  .but2:hover .btn2{
+    background-color: #6ac5fc;
   }
 
 </style>
@@ -257,8 +280,8 @@
     <div class="but">
       <a href="javascript:history.back()"><button class="btn">Change Details</button></a>
     </div>
-    <div class="but">
-      <a href="finished.html" onclick="createEmptyBasket()"><button class="btn">Complete Order</button></a>
+    <div class="but2">
+      <a href="finished.html" onclick="createEmptyBasket()"><button class="btn2">Complete Order</button></a>
     </div>
   </div>
 

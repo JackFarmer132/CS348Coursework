@@ -178,7 +178,7 @@
   }
 
   .item-row #text-block .veg-title a:hover{
-    color: black;
+    color: #0000EE;
     text-decoration: none;
   }
 
@@ -213,13 +213,14 @@
   }
 
   .binbtn{
-    background-color: #919191;
+    background-color: #d12d21;
     color:#e3e3e3;
     padding: 6px 12px;
     margin-left: 20px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 10px;
+    border: solid 1px #e3e3e3;
   }
 
   .bin{
@@ -230,7 +231,7 @@
   }
 
   .bin:hover .binbtn{
-    background-color: #6b4587;
+    background-color: #fc695d;
   }
 
   .dropbtn{
@@ -422,13 +423,14 @@
   }
 
   .clearbtn{
-    background-color: #919191;
-    color:#e3e3e3;
+    background-color: #d12d21;
+    color:white;
     padding:12px 12px;
     margin-left: 20px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 10px;
+    border: solid 1px #e3e3e3;
   }
 
   .cbut{
@@ -441,7 +443,7 @@
   }
 
   .cbut:hover .clearbtn{
-    background-color: #6b4587;
+    background-color: #fc695d;
   }
 
 </style>
@@ -496,7 +498,7 @@
           veg = productDetails[product];
 
           x = x + "<div class=\"item-row\">\n";
-          x = x + "<img src=\"" + veg["images"][0] + "\">\n";
+          x = x + "<a href=\"veg_pages/" + veg["page"] + "\"> <img src=\"" + veg["images"][0] + "\"> </a>\n";
           x = x + "<div id=\"text-block\">\n";
           x = x + "<div class=\"veg-title\">\n";
           x = x + "<a href=\"veg_pages/" + veg["page"] + "\">" + veg["name"] + " (" + basket[product] + ")</a>\n";
@@ -739,6 +741,98 @@
             else {
               console.log(document.getElementById("beans").value);
               console.log("beans");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+
+      // strawberry custom entry
+      if (basket["strawberry"] > 0){
+        console.log("adding event listener for strawberry");
+        document.getElementById("strawberry").addEventListener("keyup", function(event) {
+          val = document.getElementById("strawberry").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("strawberry").value);
+              console.log("strawberry");
+              event.preventDefault();
+              changeProductQuantity("strawberry", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("strawberry").value);
+              console.log("strawberry");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+
+      // broccoli custom entry
+      if (basket["broccoli"] > 0){
+        console.log("adding event listener for broccoli");
+        document.getElementById("broccoli").addEventListener("keyup", function(event) {
+          val = document.getElementById("broccoli").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("broccoli").value);
+              console.log("broccoli");
+              event.preventDefault();
+              changeProductQuantity("broccoli", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("broccoli").value);
+              console.log("broccoli");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+
+      // strawberry custom entry
+      if (basket["oranges"] > 0){
+        console.log("adding event listener for oranges");
+        document.getElementById("oranges").addEventListener("keyup", function(event) {
+          val = document.getElementById("oranges").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("oranges").value);
+              console.log("oranges");
+              event.preventDefault();
+              changeProductQuantity("oranges", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("oranges").value);
+              console.log("oranges");
+              event.preventDefault();
+              document.getElementById("myBtn").click();
+            }
+          }
+        });
+      }
+
+      // strawberry custom entry
+      if (basket["grapes"] > 0){
+        console.log("adding event listener for grapes");
+        document.getElementById("grapes").addEventListener("keyup", function(event) {
+          val = document.getElementById("grapes").value;
+          if (event.keyCode === 13) {
+            if (val === parseInt(val, 10).toString()){
+              console.log(document.getElementById("grapes").value);
+              console.log("grapes");
+              event.preventDefault();
+              changeProductQuantity("grapes", val);
+              location.reload();
+            }
+            else {
+              console.log(document.getElementById("grapes").value);
+              console.log("grapes");
               event.preventDefault();
               document.getElementById("myBtn").click();
             }
